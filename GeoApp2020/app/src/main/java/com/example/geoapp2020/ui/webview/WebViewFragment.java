@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,9 +34,19 @@ public class WebViewFragment extends Fragment {
             textView.setText(s);
         }
     });
-    // Load the Webview for the webview
-    final WebView webView = root.findViewById(R.id.webview);
+
+    // Webview
+        // Load the Webview for the webview
+        final WebView webView = root.findViewById(R.id.webview);
         webView.loadUrl("http://fk08srv01-2.geo.private.hm.edu/~teske/");
+
+        // Activate the Javascrip
+        // source: https://stackoverflow.com/questions/29584597/android-studio-how-to-set-a-webview-loading-and-error-view
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        // Force links and redirects to open in the WebView instead of in a browser
+        webView.setWebViewClient(new WebViewClient());
+
         return root;
     }
 }
