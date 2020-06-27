@@ -38,7 +38,7 @@
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.geoapp2020.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_media"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
@@ -46,4 +46,22 @@
         android:name="com.example.geoapp2020.ui.webview.WebViewFragment"
         android:label="@string/menu_webview"
         tools:layout="@layout/fragment_webview" />
+
+    <fragment
+        android:id="@+id/nav_draw"
+        android:name="com.example.geoapp2020.ui.draw.DrawFragment"
+        android:label="@string/menu_draw"
+        tools:layout="@layout/fragment_draw" />
+
+    <fragment
+        android:id="@+id/nav_touch"
+        android:name="com.example.geoapp2020.ui.touch.TouchFragment"
+        android:label="@string/menu_touch"
+        tools:layout="@layout/fragment_touch" />
+
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.example.geoapp2020.ui.map.MapFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>
