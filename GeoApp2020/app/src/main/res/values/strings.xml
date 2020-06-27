@@ -2,15 +2,18 @@
     <string name="app_name">GeoApp2020</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">GeoApp 2020</string>
+    <string name="nav_header_subtitle">by Johann Teske - FK08</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_media">Slideshow</string>
     <string name="menu_webview">Webview</string>
+    <string name="menu_draw">Draw Graphics</string>
+    <string name="menu_touch">Touchevent</string>
+    <string name="menu_map">Map</string>
 
     <string name="home_second">Home Second</string>
 </resources>
