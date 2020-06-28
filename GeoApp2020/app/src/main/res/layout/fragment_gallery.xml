@@ -16,12 +16,12 @@
         android:layout_marginRight="@dimen/general_margin"
         app:layout_constraintTop_toTopOf="parent">
         <TextView
-            android:id="@+id/title_home"
+            android:id="@+id/title_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/title_size"
             android:textColor="@color/colorTitle"
-            android:text="@string/title_home" />
+            android:text="@string/title_gallery" />
     </LinearLayout>
 
     <!-- Content Area -->
