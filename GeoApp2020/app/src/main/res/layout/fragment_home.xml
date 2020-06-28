@@ -69,28 +69,12 @@
                     android:drawableLeft="@drawable/ic_menu_gallery"
                     />
                 <Button
-                    android:id="@+id/button_draw"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/button_draw"
-                    android:textSize="@dimen/button_size"
-                    android:drawableLeft="@drawable/ic_menu_draw"
-                    />
-                <Button
                     android:id="@+id/button_map"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/button_map"
                     android:textSize="@dimen/button_size"
                     android:drawableLeft="@drawable/ic_menu_map"
-                    />
-                <Button
-                    android:id="@+id/button_media"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/button_media"
-                    android:textSize="@dimen/button_size"
-                    android:drawableLeft="@drawable/ic_menu_media"
                     />
             </LinearLayout>
 
