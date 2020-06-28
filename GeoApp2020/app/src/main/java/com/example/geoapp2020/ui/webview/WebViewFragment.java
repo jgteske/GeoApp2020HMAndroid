@@ -27,13 +27,6 @@ public class WebViewFragment extends Fragment {
         webViewModel = ViewModelProviders.of(this).get(WebViewModel.class);
         View root = inflater.inflate(R.layout.fragment_webview, container, false);
         // Header for the Webview
-        final TextView textView = root.findViewById(R.id.text_webview);
-        webViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-        public void onChanged(@Nullable String s) {
-            textView.setText(s);
-        }
-    });
 
     // Webview
         // Load the Webview for the webview

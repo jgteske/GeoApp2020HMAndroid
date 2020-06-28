@@ -14,6 +14,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_media">Slideshow</string>
     <string name="menu_webview">Webview</string>
+        <string name="title_webview">Projektseite von Johann Teske</string>
     <string name="menu_draw">Draw Graphics</string>
     <string name="menu_touch">Touchevent</string>
     <string name="menu_map">Map</string>
@@ -30,4 +31,10 @@
     <string name="button_news_1">1</string>
     <string name="button_news_2">2</string>
     <string name="button_news_3">3</string>
+
+
+    <!-- Dialog Strings -->
+    <string name="button_ok">Ok</string>
+    <string name="button_cancle">Abbrechen</string>
+
 </resources>
