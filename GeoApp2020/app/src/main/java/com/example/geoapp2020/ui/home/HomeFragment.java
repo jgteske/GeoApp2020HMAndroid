@@ -25,7 +25,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        final View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -46,6 +46,34 @@ public class HomeFragment extends Fragment {
         button1.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_gallery, null));
         Button button2 = (Button) root.findViewById(R.id.button_map);
         button2.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_map, null));
+
+
+        // Loading first news on App startup
+        final TextView newsText = (TextView) root.findViewById(R.id.news_text);
+        newsText.setText(R.string.newsText_1);
+
+        // News Buttons
+        Button button3 = (Button) root.findViewById(R.id.button_news_1);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newsText.setText(R.string.newsText_1);
+            }
+        });
+        Button button4 = (Button) root.findViewById(R.id.button_news_2);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newsText.setText(R.string.newsText_2);
+            }
+        });
+        Button button5 = (Button) root.findViewById(R.id.button_news_3);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newsText.setText(R.string.newsText_3);
+            }
+        });
 
         return root;
     }

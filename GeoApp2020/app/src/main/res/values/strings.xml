@@ -30,8 +30,11 @@
     <string name="button_media">Medien</string>
 
     <string name="button_news_1">1</string>
+        <string name="newsText_1">Hier befindet sich der Text für die News 1</string>
     <string name="button_news_2">2</string>
+        <string name="newsText_2">Hier befindet sich der Text für die 2ten News!</string>
     <string name="button_news_3">3</string>
+        <string name="newsText_3">3ter News Text mit allen Neuigkeiten!</string>
 
 
     <!-- Dialog Strings -->
