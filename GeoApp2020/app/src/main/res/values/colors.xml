@@ -6,4 +6,8 @@
 
     <!-- general colors -->
     <color name="colorTitle">#FF0000</color>
+    <color name="colorSubtitle">#22CF00</color>
+
+    <!-- styling -->
+    <color name="text_border_color">#000000</color>
 </resources>
