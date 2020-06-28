@@ -5,4 +5,12 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- general settings -->
+    <dimen name="general_margin">16dp</dimen>
+    <dimen name="title_size">20dp</dimen>
+    <dimen name="title_margin_top">16dp</dimen>
+    <dimen name="text_size">12dp</dimen>
+    <dimen name="button_size">20dp</dimen>
+    <dimen name="img_height">300dp</dimen>
 </resources>
