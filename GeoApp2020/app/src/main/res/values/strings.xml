@@ -19,4 +19,15 @@
     <string name="menu_map">Map</string>
 
     <string name="home_second">Home Second</string>
+
+    <!-- HOME -->
+    <string name="button_aufgaben">Aufgaben</string>
+    <string name="button_gallery">Gallerie</string>
+    <string name="button_draw">Draw</string>
+    <string name="button_map">Karte</string>
+    <string name="button_media">Medien</string>
+
+    <string name="button_news_1">1</string>
+    <string name="button_news_2">2</string>
+    <string name="button_news_3">3</string>
 </resources>

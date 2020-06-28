@@ -38,11 +38,14 @@
         <ImageView
             android:id="@+id/title_image"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/img_height" />
+            android:layout_height="@dimen/img_height"
+            android:layout_marginBottom="@dimen/general_margin"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/general_margin">
 
             <LinearLayout
             android:layout_width="0dp"
@@ -50,11 +53,45 @@
             android:layout_weight="1"
             android:orientation="vertical">
                 <Button
-                    android:id="@+id/button_home"
+                    android:id="@+id/button_aufgaben"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@android:string/untitled"
-                    android:textSize="@dimen/button_size"/>
+                    android:text="@string/button_aufgaben"
+                    android:textSize="@dimen/button_size"
+                    android:drawableLeft="@drawable/ic_menu_webview"
+                    />
+                <Button
+                    android:id="@+id/button_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_gallery"
+                    android:textSize="@dimen/button_size"
+                    android:drawableLeft="@drawable/ic_menu_gallery"
+                    />
+                <Button
+                    android:id="@+id/button_draw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_draw"
+                    android:textSize="@dimen/button_size"
+                    android:drawableLeft="@drawable/ic_menu_draw"
+                    />
+                <Button
+                    android:id="@+id/button_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_map"
+                    android:textSize="@dimen/button_size"
+                    android:drawableLeft="@drawable/ic_menu_map"
+                    />
+                <Button
+                    android:id="@+id/button_media"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_media"
+                    android:textSize="@dimen/button_size"
+                    android:drawableLeft="@drawable/ic_menu_media"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -72,22 +109,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <Button
+                        android:id="@+id/button_news_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="1"/>
+                        android:text="@string/button_news_1"/>
                     <Button
+                        android:id="@+id/button_news_2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="2"/>
+                        android:text="@string/button_news_2"/>
                     <Button
+                        android:id="@+id/button_news_3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="3"/>
-
-
+                        android:text="@string/button_news_3"/>
                 </LinearLayout>
                 <TextView
                     android:id="@+id/news_text"
