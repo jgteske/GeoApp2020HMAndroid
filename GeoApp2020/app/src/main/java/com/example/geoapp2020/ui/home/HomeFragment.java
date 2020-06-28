@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,9 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        ImageView imageView = (ImageView) root.findViewById(R.id.title_image);
+        imageView.setImageResource(R.drawable.title_image);
         return root;
     }
 }
