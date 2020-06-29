@@ -14,4 +14,10 @@
     <!-- Icon Color Settings -->
     <color name="icon_normal">#000000</color>
     <color name="icon_danger">#FF0000</color>
+
+    <!-- Button Colors-->
+    <color name="button_main">#AAA6ED</color>
+    <color name="button_highlight">#FFFFFF</color>
+    <color name="button_active">#C2ED00</color>
+
 </resources>
