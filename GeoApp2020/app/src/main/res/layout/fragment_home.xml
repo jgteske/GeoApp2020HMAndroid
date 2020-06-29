@@ -76,6 +76,22 @@
                     android:textSize="@dimen/button_size"
                     android:drawableLeft="@drawable/ic_menu_map"
                     />
+                <Button
+                    android:id="@+id/button_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_tip"
+                    android:textSize="@dimen/button_size"
+                    android:drawableLeft="@drawable/ic_tip"
+                    />
+                <Button
+                    android:id="@+id/button_alert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_alert"
+                    android:textSize="@dimen/button_size"
+                    android:drawableLeft="@drawable/ic_alert"
+                    />
             </LinearLayout>
 
             <LinearLayout

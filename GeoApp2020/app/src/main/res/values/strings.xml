@@ -25,9 +25,9 @@
     <!-- HOME -->
     <string name="button_aufgaben">Aufgaben</string>
     <string name="button_gallery">Gallerie</string>
-    <string name="button_draw">Draw</string>
     <string name="button_map">Karte</string>
-    <string name="button_media">Medien</string>
+    <string name="button_tip">Reisetipp</string>
+    <string name="button_alert">WARNUNG!</string>
 
     <string name="button_news_1">1</string>
         <string name="newsText_1">Hier befindet sich der Text für die News 1</string>
@@ -40,5 +40,7 @@
     <!-- Dialog Strings -->
     <string name="button_ok">Ok</string>
     <string name="button_cancle">Abbrechen</string>
+    <string name="dialog_tip">Tipps for Free hier!</string>
+    <string name="dialog_alert">Alert Text hier</string>
 
 </resources>

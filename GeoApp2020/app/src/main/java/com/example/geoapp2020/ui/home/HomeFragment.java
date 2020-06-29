@@ -10,12 +10,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.example.geoapp2020.R;
+import com.example.geoapp2020.ui.dialog.DialogAlertFragment;
+import com.example.geoapp2020.ui.dialog.DialogTipFragment;
 
 public class HomeFragment extends Fragment {
 
@@ -39,7 +42,8 @@ public class HomeFragment extends Fragment {
         ImageView imageView = (ImageView) root.findViewById(R.id.title_image);
         imageView.setImageResource(R.drawable.title_image);
 
-        // setting up buttons
+
+        // setting up buttons to link with navigation elements
         Button button = (Button) root.findViewById(R.id.button_aufgaben);
         button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_webview, null));
         Button button1 = (Button) root.findViewById(R.id.button_gallery);
@@ -74,6 +78,30 @@ public class HomeFragment extends Fragment {
                 newsText.setText(R.string.newsText_3);
             }
         });
+
+
+        // setting up buttons to alert tip
+        Button button6 = (Button) root.findViewById(R.id.button_tip);
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = DialogTipFragment.newInstance(
+                        R.string.dialog_tip);
+                newFragment.show(getFragmentManager(), "dialog");
+            }
+        });
+
+        // setting up buttons to alert tip
+        Button button7 = (Button) root.findViewById(R.id.button_alert);
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = DialogAlertFragment.newInstance(
+                        R.string.dialog_alert);
+                newFragment.show(getFragmentManager(), "dialog");
+            }
+        });
+
 
         return root;
     }
