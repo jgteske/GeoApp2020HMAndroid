@@ -16,8 +16,8 @@
     <color name="icon_danger">#FF0000</color>
 
     <!-- Button Colors-->
-    <color name="button_main">#AAA6ED</color>
+    <color name="button_main">#919191</color>
     <color name="button_highlight">#FFFFFF</color>
-    <color name="button_active">#C2ED00</color>
+    <color name="button_active">#C8966FFF</color>
 
 </resources>

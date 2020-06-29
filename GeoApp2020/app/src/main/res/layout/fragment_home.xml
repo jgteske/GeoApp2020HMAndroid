@@ -113,19 +113,25 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/button_news_1"/>
+                        android:text="@string/button_news_1"
+                        android:background="@drawable/button_selector"
+                        android:state_activated="false"/>
                     <Button
                         android:id="@+id/button_news_2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/button_news_2"/>
+                        android:text="@string/button_news_2"
+                        android:background="@drawable/button_selector"
+                        android:state_activated="false"/>
                     <Button
                         android:id="@+id/button_news_3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/button_news_3"/>
+                        android:text="@string/button_news_3"
+                        android:background="@drawable/button_selector"
+                        android:state_activated="false"/>
                 </LinearLayout>
                 <TextView
                     android:id="@+id/news_text"

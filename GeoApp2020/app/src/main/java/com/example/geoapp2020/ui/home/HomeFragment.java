@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,7 +45,7 @@ public class HomeFragment extends Fragment {
 
 
         // setting up buttons to link with navigation elements
-        Button button = (Button) root.findViewById(R.id.button_aufgaben);
+        final Button button = (Button) root.findViewById(R.id.button_aufgaben);
         button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_webview, null));
         Button button1 = (Button) root.findViewById(R.id.button_gallery);
         button1.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_gallery, null));
@@ -52,30 +53,53 @@ public class HomeFragment extends Fragment {
         button2.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_map, null));
 
 
+        // chaning buttonstyle on click base source: https://stackoverflow.com/questions/48479026/android-change-button-style-resource-on-click  -  modified by jteske
         // Loading first news on App startup
         final TextView newsText = (TextView) root.findViewById(R.id.news_text);
         newsText.setText(R.string.newsText_1);
 
         // News Buttons
-        Button button3 = (Button) root.findViewById(R.id.button_news_1);
+        final Button button3 = (Button) root.findViewById(R.id.button_news_1);
+        button3.setActivated(true); // activated by default
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Changes style with the drawables > button_selector.xml
+                button3.setActivated(true);
+                // sets other buttons to Activated = false
+                root.findViewById(R.id.button_news_2).setActivated(false);
+                root.findViewById(R.id.button_news_3).setActivated(false);
+
                 newsText.setText(R.string.newsText_1);
+                Toast.makeText(getContext(), "News 1 geladen", Toast.LENGTH_SHORT).show();
             }
         });
-        Button button4 = (Button) root.findViewById(R.id.button_news_2);
+        final Button button4 = (Button) root.findViewById(R.id.button_news_2);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Changes style with the drawables > button_selector.xml
+                button4.setActivated(true);
+                // sets other buttons to Activated = false
+                root.findViewById(R.id.button_news_1).setActivated(false);
+                root.findViewById(R.id.button_news_3).setActivated(false);
+
                 newsText.setText(R.string.newsText_2);
+                Toast.makeText(getContext(), "News 2 geladen", Toast.LENGTH_SHORT).show();
             }
         });
-        Button button5 = (Button) root.findViewById(R.id.button_news_3);
+        final Button button5 = (Button) root.findViewById(R.id.button_news_3);
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Changes style with the drawables > button_selector.xml
+                button5.setActivated(true);
+                // sets other buttons to Activated = false
+                root.findViewById(R.id.button_news_1).setActivated(false);
+                root.findViewById(R.id.button_news_2).setActivated(false);
+
                 newsText.setText(R.string.newsText_3);
+                Toast.makeText(getContext(), "News 3 geladen", Toast.LENGTH_SHORT).show();
             }
         });
 
