@@ -37,5 +37,13 @@
             android:id="@+id/map"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
+        <ImageButton
+            android:id="@+id/button_location"
+            android:src="@drawable/ic_menu_mylocation"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/map"
+            android:layout_margin="@dimen/general_margin"/>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

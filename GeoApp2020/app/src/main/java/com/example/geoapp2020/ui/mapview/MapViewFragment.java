@@ -1,6 +1,6 @@
 package com.example.geoapp2020.ui.mapview;
 // reference is this tutorial from osmand:  https://github.com/osmdroid/osmdroid/wiki/How-to-use-the-osmdroid-library
-// by jteske
+// edited, adapted and changed by jteske
 
 import android.Manifest;
 import android.app.Activity;
@@ -8,13 +8,14 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
+import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,13 +32,12 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.CopyrightOverlay;
-import org.osmdroid.views.overlay.ItemizedIconOverlay;
-import org.osmdroid.views.overlay.ItemizedOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.MinimapOverlay;
-import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
+import org.osmdroid.views.overlay.mylocation.IMyLocationConsumer;
+import org.osmdroid.views.overlay.mylocation.IMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
@@ -53,6 +53,9 @@ public class MapViewFragment extends Fragment {
     private ScaleBarOverlay scaleBarOverlay;
     private MyLocationNewOverlay locationOverlay;
 
+    private MyLocationProvider myLocationProvider;
+    private Location currentLocation;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,16 +63,8 @@ public class MapViewFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_mapview, container, false);
 
         //handle permissions first, before map is created. not depicted here
-
-        //load/initialize the osmdroid configuration, this can be done
         Context ctx = getContext();  // this provides the context of the application!!! IMPORTANT for other functions
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
-        //setting this before the layout is inflated is a good idea
-        //it 'should' ensure that the map has a writable location for the map cache, even without permissions
-        //if no tiles are displayed, you can try overriding the cache path using Configuration.getInstance().setCachePath
-        //see also StorageUtils
-        //note, the load method also sets the HTTP User Agent to your application's package name, abusing osm's
-        //tile servers will get you banned based on this string
 
 
         mMapView = (MapView) root.findViewById(R.id.map);
@@ -113,10 +108,12 @@ public class MapViewFragment extends Fragment {
         mMapView.getOverlays().add(this.minimapOverlay);
 
 
+        ////////////////////////////////////////////// Location Manager //////////////////////////////////////////////////////////////////
         // Location Marker
         this.locationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(ctx), mMapView);
         this.locationOverlay.enableMyLocation();
         this.locationOverlay.disableFollowLocation();
+        this.locationOverlay.isDrawAccuracyEnabled();
         this.locationOverlay.setDrawAccuracyEnabled(true);
 
         Bitmap personIcon = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.ic_menu_mylocation);
@@ -124,9 +121,28 @@ public class MapViewFragment extends Fragment {
 
         mMapView.getOverlays().add(this.locationOverlay);
 
-        //Center to my Postition source: https://github.com/2ndGAB/OSMCenterToMyPosition
 
-
+        //Center to my Postition source: https://github.com/osmdroid/osmdroid/blob/19053d1435e8fa4e58b04960b23b0769e99adb66/OpenStreetMapViewer/src/main/java/org/osmdroid/samplefragments/events/SampleAnimatedZoomToLocation.java
+        ImageButton centerButton = (ImageButton) root.findViewById(R.id.button_location);
+        centerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Location Provider
+                final Context context = getActivity();
+                Toast.makeText(getActivity(), "Zoom auf aktuellen Standort!", Toast.LENGTH_LONG).show();
+                myLocationProvider = new MyLocationProvider(context);
+                myLocationProvider.startLocationProvider(new IMyLocationConsumer() {
+                    @Override
+                    public void onLocationChanged(Location location, IMyLocationProvider source) {
+                        myLocationProvider.stopLocationProvider();
+                        currentLocation = location;
+                        GeoPoint myPosition = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
+                        mMapView.getController().animateTo(myPosition, 14.0, (long) 2000); // animateTo: 1.Location, 2.Zoomlevel, 3.animationspeed in ms (jteske)
+                    }
+                });
+            }
+        });
+        ////////////////////////////////////////////// End of Location Manager //////////////////////////////////////////////////////////////////
 
         requestPermissionsIfNecessary(new String[] {
                 // WRITE_EXTERNAL_STORAGE is required in order to show the map
