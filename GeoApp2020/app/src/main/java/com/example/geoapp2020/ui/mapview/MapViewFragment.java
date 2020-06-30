@@ -6,12 +6,16 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -27,9 +31,14 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.CopyrightOverlay;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import org.osmdroid.views.overlay.ItemizedOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.MinimapOverlay;
+import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
 
@@ -42,6 +51,7 @@ public class MapViewFragment extends Fragment {
     private CopyrightOverlay copyrightOverlay;
     private MinimapOverlay minimapOverlay;
     private ScaleBarOverlay scaleBarOverlay;
+    private MyLocationNewOverlay locationOverlay;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -101,13 +111,27 @@ public class MapViewFragment extends Fragment {
         //optionally, you can set the minimap to a different tile source
         minimapOverlay.setTileSource(TileSourceFactory.OpenTopo); // Adding a different Tile Source for the miniMap - selection here: https://osmdroid.github.io/osmdroid/javadocAll/org/osmdroid/tileprovider/tilesource/TileSourceFactory.html
         mMapView.getOverlays().add(this.minimapOverlay);
-        
+
+
+        // Location Marker
+        this.locationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(ctx), mMapView);
+        this.locationOverlay.enableMyLocation();
+        this.locationOverlay.disableFollowLocation();
+        this.locationOverlay.setDrawAccuracyEnabled(true);
+
+        Bitmap personIcon = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.ic_menu_mylocation);
+        this.locationOverlay.setPersonIcon(personIcon);
+
+        mMapView.getOverlays().add(this.locationOverlay);
+
+        //Center to my Postition source: https://github.com/2ndGAB/OSMCenterToMyPosition
+
+
 
         requestPermissionsIfNecessary(new String[] {
-                // if you need to show the current location, uncomment the line below
-                // Manifest.permission.ACCESS_FINE_LOCATION,
                 // WRITE_EXTERNAL_STORAGE is required in order to show the map
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_FINE_LOCATION
         });
 
         return root;
