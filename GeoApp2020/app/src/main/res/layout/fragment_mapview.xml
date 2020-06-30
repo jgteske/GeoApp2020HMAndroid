@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Title Area -->
+    <LinearLayout
+        android:id="@+id/title_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title_margin_top"
+        android:layout_marginLeft="@dimen/general_margin"
+        android:layout_marginRight="@dimen/general_margin"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/title_mapview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_size"
+            android:textColor="@color/colorTitle"
+            android:text="@string/title_mapview" />
+    </LinearLayout>
+
+    <!-- Content Area -->
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/general_margin"
+        app:layout_constraintTop_toBottomOf="@id/title_area"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/map"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+        <ImageButton
+            android:id="@+id/button_location"
+            android:src="@drawable/ic_menu_mylocation"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/map"
+            android:layout_margin="@dimen/general_margin"/>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

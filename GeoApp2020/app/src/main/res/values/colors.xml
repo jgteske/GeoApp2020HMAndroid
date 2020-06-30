@@ -3,4 +3,21 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <!-- general colors -->
+    <color name="colorTitle">#FF0000</color>
+    <color name="colorSubtitle">#22CF00</color>
+
+    <!-- styling -->
+    <color name="text_border_color">#000000</color>
+
+    <!-- Icon Color Settings -->
+    <color name="icon_normal">#000000</color>
+    <color name="icon_danger">#FF0000</color>
+
+    <!-- Button Colors-->
+    <color name="button_main">#919191</color>
+    <color name="button_highlight">#FFFFFF</color>
+    <color name="button_active">#C8966FFF</color>
+
 </resources>

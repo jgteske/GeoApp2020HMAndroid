@@ -2,14 +2,46 @@
     <string name="app_name">GeoApp2020</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">GeoApp 2020</string>
+    <string name="nav_header_subtitle">by Johann Teske - FK08</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <!-- menu names and titles -->
     <string name="menu_home">Home</string>
+        <string name="title_home">Covid19</string>
+        <string name="subtitle_1">News</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+        <string name="title_gallery">Gallerie</string>
+    <string name="menu_media">Slideshow</string>
+    <string name="menu_webview">Webview</string>
+        <string name="title_webview">Projektseite von Johann Teske</string>
+    <string name="menu_draw">Draw Graphics</string>
+    <string name="menu_touch">Touchevent</string>
+    <string name="menu_map">Map</string>
+        <string name="title_mapview">Mapview von Johann</string>
 
     <string name="home_second">Home Second</string>
+
+    <!-- HOME -->
+    <string name="button_aufgaben">Aufgaben</string>
+    <string name="button_gallery">Gallerie</string>
+    <string name="button_map">Karte</string>
+    <string name="button_tip">Reisetipp</string>
+    <string name="button_alert">WARNUNG!</string>
+
+    <string name="button_news_1">1</string>
+        <string name="newsText_1">Hier befindet sich der Text für die News 1</string>
+    <string name="button_news_2">2</string>
+        <string name="newsText_2">Hier befindet sich der Text für die 2ten News!</string>
+    <string name="button_news_3">3</string>
+        <string name="newsText_3">3ter News Text mit allen Neuigkeiten!</string>
+
+
+    <!-- Dialog Strings -->
+    <string name="button_ok">Ok</string>
+    <string name="button_cancle">Abbrechen</string>
+    <string name="dialog_tip">Tipps for Free hier!</string>
+    <string name="dialog_alert">Alert Text hier</string>
+
 </resources>
