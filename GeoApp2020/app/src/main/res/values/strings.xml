@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <!-- menu names -->
+    <!-- menu names and titles -->
     <string name="menu_home">Home</string>
         <string name="title_home">Covid19</string>
         <string name="subtitle_1">News</string>
@@ -19,6 +19,7 @@
     <string name="menu_draw">Draw Graphics</string>
     <string name="menu_touch">Touchevent</string>
     <string name="menu_map">Map</string>
+        <string name="title_mapview">Mapview von Johann</string>
 
     <string name="home_second">Home Second</string>
 
