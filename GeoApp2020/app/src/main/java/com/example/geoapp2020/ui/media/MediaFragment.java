@@ -1,4 +1,4 @@
-package com.example.geoapp2020.ui.slideshow;
+package com.example.geoapp2020.ui.media;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.geoapp2020.R;
 
-public class SlideshowFragment extends Fragment {
+public class MediaFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private MediaViewModel mediaViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        mediaViewModel =
+                ViewModelProviders.of(this).get(MediaViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_media, container, false);
+        final TextView textView = root.findViewById(R.id.text_media);
+        mediaViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

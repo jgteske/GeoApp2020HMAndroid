@@ -13,7 +13,8 @@
         <string name="subtitle_1">News</string>
     <string name="menu_gallery">Gallery</string>
         <string name="title_gallery">Gallerie</string>
-    <string name="menu_media">Slideshow</string>
+    <string name="menu_media">Media</string>
+        <string name="title_media">Medientitel!</string>
     <string name="menu_webview">Webview</string>
         <string name="title_webview">Projektseite von Johann Teske</string>
     <string name="menu_draw">Draw Graphics</string>
