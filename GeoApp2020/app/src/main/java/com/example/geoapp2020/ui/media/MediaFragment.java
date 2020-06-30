@@ -1,9 +1,6 @@
 package com.example.geoapp2020.ui.media;
 
-import android.annotation.SuppressLint;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -21,10 +18,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.geoapp2020.R;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class MediaFragment extends Fragment implements View.OnClickListener, SurfaceHolder.Callback {
 
