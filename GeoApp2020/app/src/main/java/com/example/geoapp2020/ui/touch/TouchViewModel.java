@@ -17,7 +17,7 @@ public class TouchViewModel extends View {
 
     private float xpos = -1;
     private float ypos = -1;
-    private Bitmap flowerBitmap;
+    private Bitmap pointBitmap;
     Paint iconPaint;
 
     private int touchX;
@@ -26,12 +26,12 @@ public class TouchViewModel extends View {
     public TouchViewModel(Context c) {
         super(c);
 
-        // load background image
+        // loads background image
         this.setBackgroundResource(R.raw.image_01);
 
-        // load flower bitmap
+        // loads point bitmap
         Resources resources = getResources();
-        flowerBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_position);
+        pointBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_position);
 
         // antialiasing
         iconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -43,73 +43,40 @@ public class TouchViewModel extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // Startposition getWidth() funktioniert nicht in onCreate() oder
-        // onStart()
+        // starting position getWidth() just works in onDraw()
         if (xpos == -1 && ypos == -1) {
             xpos = getWidth() / 2;
             ypos = getHeight() / 2;
         }
 
-        // draw flower bitmap
-        if (flowerBitmap != null) {
-            canvas.drawBitmap(flowerBitmap, xpos - flowerBitmap.getWidth() / 2,
-                    ypos - flowerBitmap.getHeight() / 2, iconPaint);
+        // draw point bitmap
+        if (pointBitmap != null) {
+            canvas.drawBitmap(pointBitmap, xpos - pointBitmap.getWidth() / 2,
+                    ypos - pointBitmap.getHeight() / 2, iconPaint);
         }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
-            ypos -= 5;
-        }
-        if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-            xpos += 5;
-        }
-        if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-            ypos += 5;
-        }
-        if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-            xpos -= 5;
-        }
-        if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
-            xpos = getWidth() / 2;
-            ypos = getHeight() / 2;
-        }
-
-        invalidate();
-
-        return super.onKeyDown(keyCode, event);
-    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int aktion = event.getAction();
 
-        if(aktion == MotionEvent.ACTION_DOWN) {
-            touchX = (int) event.getX();
-            touchY = (int) event.getY();
+        int action = event.getAction();
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                xpos = (int) event.getX();
+                ypos = (int) event.getY();
+                invalidate();
+                break;
+            case MotionEvent.ACTION_UP:
+                xpos = (int) event.getX();
+                ypos = (int) event.getY();
+                System.out.print("....."+xpos+"...."+ypos);
+                invalidate();
+                break;
         }
-
-        if(aktion == MotionEvent.ACTION_UP) {
-            int tx = (int) event.getX();
-            int ty = (int) event.getY();
-
-            if( (touchX - tx) > 20) {
-                xpos -= 25;
-            } else if ((touchX - tx) <= -20){
-                xpos += 25;
-            }
-
-            if( (touchY - ty) > 20) {
-                ypos -= 25;
-            } else if( (touchY - ty) <= -20) {
-                ypos += 25;
-            }
-        }
-
-        invalidate();
-
         return true;
     }
 }
