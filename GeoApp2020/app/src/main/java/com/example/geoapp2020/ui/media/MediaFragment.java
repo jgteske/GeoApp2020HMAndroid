@@ -46,8 +46,11 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
 
         // BackVideo Clickable to play it
         videoView = (VideoView) root.findViewById(R.id.video_view);
+        prepareVideo(VIDEO_DATEI);
         videoView.setOnClickListener(this);
+
         videoView1 = (VideoView) root.findViewById(R.id.video_view1);
+        prepareVideo(VIDEO_DATEI_1);
         videoView1.setOnClickListener(this);
 
 
@@ -55,36 +58,42 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
         return root;
     }
 
-
-    // Function to play the video
-    private void playVideo(String videoName) {
+    private void prepareVideo(String videoName){
         if (videoName == "video_1.mp4"){
-            videoView = (VideoView) getActivity().findViewById(R.id.video_view);
             //videoView.setVisibility(View.VISIBLE);
             videoView.setVideoPath("android.resource://" + getContext().getPackageName() + "/" + R.raw.video_1);
 
             MediaController mediaController = new MediaController(getContext());
             mediaController.setAnchorView(videoView);
             videoView.setMediaController(mediaController);
+            videoView.seekTo(1);
+
+        }else if(videoName == "video_2.mp4"){
+            //videoView1.setVisibility(View.VISIBLE);
+            videoView1.setVideoPath("android.resource://" + getContext().getPackageName() + "/" + R.raw.video_2);
+
+            MediaController mediaController = new MediaController(getContext());
+            mediaController.setAnchorView(videoView1);
+            videoView1.setMediaController(mediaController);
+            videoView1.seekTo(1);
+        }
+    }
+
+    // Function to play the video
+    private void playVideo(String videoName) {
+        if (videoName == "video_1.mp4"){
 
             if(videoView.isPlaying()) {
-                videoView1.stopPlayback();
+                videoView.stopPlayback();
             }
 
             videoView.start();
             videoView.requestFocus();
 
         }else if(videoName == "video_2.mp4"){
-            videoView1 = (VideoView) getActivity().findViewById(R.id.video_view1);
-            //videoView.setVisibility(View.VISIBLE);
-            videoView1.setVideoPath("android.resource://" + getContext().getPackageName() + "/" + R.raw.video_2);
-
-            MediaController mediaController = new MediaController(getContext());
-            mediaController.setAnchorView(videoView1);
-            videoView1.setMediaController(mediaController);
 
             if(videoView1.isPlaying()) {
-                videoView.stopPlayback();
+                videoView1.stopPlayback();
             }
 
             videoView.start();
