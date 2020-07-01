@@ -121,25 +121,32 @@ public class MapViewFragment extends Fragment {
 
         mMapView.getOverlays().add(this.locationOverlay);
 
+        //Center to my Postition on Button Click
+        // source: https://github.com/osmdroid/osmdroid/blob/19053d1435e8fa4e58b04960b23b0769e99adb66/OpenStreetMapViewer/src/main/java/org/osmdroid/samplefragments/events/SampleAnimatedZoomToLocation.java
+        //
+        // Location Provider
+        myLocationProvider = new MyLocationProvider(ctx);
+        myLocationProvider.startLocationProvider(new IMyLocationConsumer() {
+            @Override
+            public void onLocationChanged(Location location, IMyLocationProvider source) {
+                //myLocationProvider.stopLocationProvider();
+                currentLocation = location;
 
-        //Center to my Postition source: https://github.com/osmdroid/osmdroid/blob/19053d1435e8fa4e58b04960b23b0769e99adb66/OpenStreetMapViewer/src/main/java/org/osmdroid/samplefragments/events/SampleAnimatedZoomToLocation.java
+            }
+        });
+
         ImageButton centerButton = (ImageButton) root.findViewById(R.id.button_location);
         centerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Location Provider
-                final Context context = getActivity();
-                Toast.makeText(getActivity(), "Zoom auf aktuellen Standort!", Toast.LENGTH_LONG).show();
-                myLocationProvider = new MyLocationProvider(context);
-                myLocationProvider.startLocationProvider(new IMyLocationConsumer() {
-                    @Override
-                    public void onLocationChanged(Location location, IMyLocationProvider source) {
-                        myLocationProvider.stopLocationProvider();
-                        currentLocation = location;
-                        GeoPoint myPosition = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
-                        mMapView.getController().animateTo(myPosition, 14.0, (long) 2000); // animateTo: 1.Location, 2.Zoomlevel, 3.animationspeed in ms (jteske)
-                    }
-                });
+                // Checking if currentLocation is set, otherwise app will crash when location is not set and you press the LccationButton - jteske
+                if (currentLocation == null){
+                    Toast.makeText(getActivity(), "Standort noch nicht bestimmt!", Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getActivity(), "Zoom auf aktuellen Standort!", Toast.LENGTH_LONG).show();
+                    GeoPoint myPosition = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
+                    mMapView.getController().animateTo(myPosition, 14.0, (long) 2000); // animateTo: 1.Location, 2.Zoomlevel, 3.animationspeed in ms (jteske)
+                }
             }
         });
         ////////////////////////////////////////////// End of Location Manager //////////////////////////////////////////////////////////////////
