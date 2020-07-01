@@ -19,6 +19,7 @@
         <string name="title_webview">Projektseite von Johann Teske</string>
     <string name="menu_draw">Draw Graphics</string>
     <string name="menu_touch">Touchevent</string>
+        <string name="title_touch">ToucheventApp</string>
     <string name="menu_map">Map</string>
         <string name="title_mapview">Mapview von Johann</string>
 
