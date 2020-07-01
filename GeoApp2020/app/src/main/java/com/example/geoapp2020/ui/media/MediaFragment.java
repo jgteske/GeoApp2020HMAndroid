@@ -84,7 +84,8 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
         if (videoName == "video_1.mp4"){
 
             if(videoView.isPlaying()) {
-                videoView.stopPlayback();
+                // Do nothing (don't start the video)
+                //videoView.stopPlayback();
             }
 
             videoView.start();
@@ -93,11 +94,12 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
         }else if(videoName == "video_2.mp4"){
 
             if(videoView1.isPlaying()) {
-                videoView1.stopPlayback();
+                // Do nothing (don't start the video)
+                //videoView1.stopPlayback();
             }
 
-            videoView.start();
-            videoView.requestFocus();
+            videoView1.start();
+            videoView1.requestFocus();
         }
     }
 
