@@ -110,7 +110,9 @@ public class MapViewFragment extends Fragment {
 
         ////////////////////////////////////////////// Location Manager //////////////////////////////////////////////////////////////////
         // Location Marker
-        this.locationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(ctx), mMapView);
+        GpsMyLocationProvider gpsMyLocationProvider = new GpsMyLocationProvider(ctx);
+        gpsMyLocationProvider.setLocationUpdateMinTime(2000); // Setting GPS Update intervall to ...ms
+        this.locationOverlay = new MyLocationNewOverlay(gpsMyLocationProvider, mMapView);
         this.locationOverlay.enableMyLocation();
         this.locationOverlay.disableFollowLocation();
         this.locationOverlay.isDrawAccuracyEnabled();
