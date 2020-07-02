@@ -11,17 +11,23 @@
     <string name="menu_home">Home</string>
         <string name="title_home">Covid19</string>
         <string name="subtitle_1">News</string>
-    <string name="menu_gallery">Gallery</string>
-        <string name="title_gallery">Gallerie</string>
-    <string name="menu_media">Media</string>
-        <string name="title_media">Medientitel!</string>
-    <string name="menu_webview">Webview</string>
-        <string name="title_webview">Projektseite von Johann Teske</string>
-    <string name="menu_draw">Draw Graphics</string>
-    <string name="menu_touch">Touchevent</string>
-        <string name="title_touch">ToucheventApp</string>
-    <string name="menu_map">Map</string>
-        <string name="title_mapview">Mapview von Johann</string>
+    <!-- Webviews -->
+    <string name="menu_header1">Header 1</string>
+        <string name="menu_webview">Webview</string>
+            <string name="title_webview">Projektseite von Johann Teske</string>
+        <string name="menu_webview_1">Webview1</string>
+        <string name="menu_webview_2">Webview2</string>
+    <!-- Other menues-->
+    <string name="menu_header2">Allgemeine Infos</string>
+        <string name="menu_gallery">Gallery</string>
+            <string name="title_gallery">Gallerie</string>
+        <string name="menu_media">Media</string>
+            <string name="title_media">Medientitel!</string>
+        <string name="menu_draw">Draw Graphics</string>
+        <string name="menu_touch">Touchevent</string>
+            <string name="title_touch">ToucheventApp</string>
+        <string name="menu_map">Map</string>
+            <string name="title_mapview">Mapview von Johann</string>
 
     <string name="home_second">Home Second</string>
 

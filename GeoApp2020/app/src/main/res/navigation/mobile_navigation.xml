@@ -46,6 +46,16 @@
         android:name="com.example.geoapp2020.ui.webview.WebViewFragment"
         android:label="@string/menu_webview"
         tools:layout="@layout/fragment_webview" />
+    <fragment
+        android:id="@+id/nav_webview1"
+        android:name="com.example.geoapp2020.ui.webview.WebViewFragment1"
+        android:label="@string/menu_webview"
+        tools:layout="@layout/fragment_webview" />
+    <fragment
+        android:id="@+id/nav_webview2"
+        android:name="com.example.geoapp2020.ui.webview.WebViewFragment2"
+        android:label="@string/menu_webview"
+        tools:layout="@layout/fragment_webview" />
 
     <fragment
         android:id="@+id/nav_draw"
