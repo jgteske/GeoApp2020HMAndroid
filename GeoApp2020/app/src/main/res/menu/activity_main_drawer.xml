@@ -39,10 +39,6 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="@string/menu_gallery" />
             <item
-                android:id="@+id/nav_draw"
-                android:icon="@drawable/ic_menu_draw"
-                android:title="@string/menu_draw" />
-            <item
                 android:id="@+id/nav_touch"
                 android:icon="@drawable/ic_menu_touch"
                 android:title="@string/menu_touch" />

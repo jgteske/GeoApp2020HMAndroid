@@ -58,12 +58,6 @@
         tools:layout="@layout/fragment_webview" />
 
     <fragment
-        android:id="@+id/nav_draw"
-        android:name="com.example.geoapp2020.ui.draw.DrawFragment"
-        android:label="@string/menu_draw"
-        tools:layout="@layout/fragment_draw" />
-
-    <fragment
         android:id="@+id/nav_touch"
         android:name="com.example.geoapp2020.ui.touch.TouchFragment"
         android:label="@string/menu_touch"
