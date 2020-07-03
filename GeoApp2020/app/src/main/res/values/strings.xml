@@ -45,6 +45,8 @@
     <string name="button_news_3">3</string>
         <string name="newsText_3">3ter News Text mit allen Neuigkeiten!</string>
 
+    <!-- Webview -->
+    <string name="button_save_position">Speicher deinen Standort!</string>
 
     <!-- Dialog Strings -->
     <string name="button_ok">Ok</string>

@@ -15,6 +15,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.geoapp2020.R;
+import com.example.geoapp2020.ui.data.DataManager;
 
 
 import org.osmdroid.api.IMapController;
@@ -63,7 +65,7 @@ public class MapViewFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_mapview, container, false);
 
         //handle permissions first, before map is created. not depicted here
-        Context ctx = getContext();  // this provides the context of the application!!! IMPORTANT for other functions
+        final Context ctx = getContext();  // this provides the context of the application!!! IMPORTANT for other functions
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
 
@@ -152,6 +154,16 @@ public class MapViewFragment extends Fragment {
             }
         });
         ////////////////////////////////////////////// End of Location Manager //////////////////////////////////////////////////////////////////
+
+        // Button to save your current Location in an Database
+        Button button = (Button) root.findViewById(R.id.button_save_position);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // giving the Activity Context, Latitude nad Longitude of the current location to put into an sqlite-database - jteske
+                DataManager dm = new DataManager(ctx, currentLocation.getLatitude(), currentLocation.getLongitude());
+            }
+        });
 
         requestPermissionsIfNecessary(new String[] {
                 // WRITE_EXTERNAL_STORAGE is required in order to show the map

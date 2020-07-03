@@ -45,5 +45,11 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/map"
             android:layout_margin="@dimen/general_margin"/>
+        <Button
+            android:id="@+id/button_save_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/map"
+            android:text="@string/button_save_position"/>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
