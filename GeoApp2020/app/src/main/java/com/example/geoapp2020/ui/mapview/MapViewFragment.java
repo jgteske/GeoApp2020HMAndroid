@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,7 +17,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +28,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.geoapp2020.R;
+import com.example.geoapp2020.ui.data.DBAccess;
 import com.example.geoapp2020.ui.data.DataManager;
+import com.example.geoapp2020.ui.data.Dataset;
 
 
 import org.osmdroid.api.IMapController;
@@ -34,14 +39,19 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.CopyrightOverlay;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.MinimapOverlay;
+import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.IMyLocationConsumer;
 import org.osmdroid.views.overlay.mylocation.IMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
+import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class MapViewFragment extends Fragment {
@@ -57,6 +67,10 @@ public class MapViewFragment extends Fragment {
 
     private MyLocationProvider myLocationProvider;
     private Location currentLocation;
+
+    private DBAccess dbAccess;
+    ArrayList<OverlayItem> overlayItemArray = new ArrayList<OverlayItem>();
+    ItemizedIconOverlay<OverlayItem> itemizedIconOverlay;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -170,6 +184,53 @@ public class MapViewFragment extends Fragment {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_FINE_LOCATION
         });
+
+
+        // Toggle button to show your currently saved positions on the map
+        Switch switchButton = (Switch) root.findViewById(R.id.button_switch_locations);
+        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // get location Data from database
+                    dbAccess = new DBAccess(getContext(), "database_locations.sqlite");
+                    final ArrayList<Dataset> locations = (ArrayList<Dataset>) dbAccess.readDataset();
+
+                    // iterating through all locations and create a marker for each one of it
+                    int arr_size = locations.size();
+
+                    // getting multiple markers into one overlay-item http://android-er.blogspot.com/2012/05/create-multi-marker-openstreetmap-for.html
+                    for (int i=0; i<arr_size; i++){
+
+                        // Write current data into a dataset
+                        Dataset data = locations.get(i);
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+                        String stringDate = formatter.format(data.RecordingDate);
+                        // adding data into the overlayItemArray
+                        overlayItemArray.add(new OverlayItem(
+                                "1", data.LocationName, stringDate, new GeoPoint( data.LocationLatitude, data.LocationLongitude)));
+                    }
+
+                    // create Drawable icon for the itemizedIconOverlay - source http://spearhend.blogspot.com/2012/04/load-android-drawable-from-xml.html
+                    // loads the oberlayItemArray with the personalized Icon
+                    try {
+                        itemizedIconOverlay = new ItemizedIconOverlay<OverlayItem>(
+                                //getContext(), overlayItemArray, null); // simple for with the standard icon
+                                overlayItemArray, Drawable.createFromXml(getResources(), getResources().getXml(R.drawable.ic_added_location)), null, ctx); // https://osmdroid.github.io/osmdroid/javadocs/osmdroid-android/debug/index.html?org/osmdroid/views/overlay/Marker.html
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (XmlPullParserException e) {
+                        e.printStackTrace();
+                    }
+                    mMapView.getOverlays().add(itemizedIconOverlay);
+
+                } else {
+                        mMapView.getOverlays().remove(itemizedIconOverlay);
+                        mMapView.invalidate();
+                }
+            }
+        });
+
 
         return root;
     }
