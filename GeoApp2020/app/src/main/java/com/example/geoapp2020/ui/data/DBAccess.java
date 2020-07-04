@@ -33,6 +33,14 @@ public class DBAccess extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
     }
 
+    public DBAccess(Context activity, String dbName) {
+        super(activity, dbName, null, 1);
+        table="table_1";
+
+        // creating a database with getWritableDatabase(), if it doesn't exist already
+        db = this.getWritableDatabase();
+    }
+
     // determine table name
     private void getTableName() {
         String sql = tableSQL.toUpperCase();
