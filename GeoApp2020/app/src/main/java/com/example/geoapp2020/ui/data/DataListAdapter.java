@@ -45,7 +45,7 @@ public class DataListAdapter extends ArrayAdapter<Dataset>{
         tvLat.setText(stringLat);
         String stringLng = Double.toString(object.LocationLongitude);
         tvLng.setText(stringLng);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:MM:SS");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         String stringDate = formatter.format(object.RecordingDate);
         tvDate.setText(stringDate);
 
