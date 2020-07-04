@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import com.example.geoapp2020.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class DataFragment extends Fragment {
@@ -31,7 +30,7 @@ public class DataFragment extends Fragment {
 
         // show list of your Locations
         dbAccess = new DBAccess(getContext(), "database_locations.sqlite");
-        List locations = dbAccess.readDataset();
+        ArrayList<Dataset> locations = (ArrayList<Dataset>) dbAccess.readDataset();
         ListView listView = (ListView) root.findViewById(R.id.list_view_location);
         adapter = new DataListAdapter(getContext(), (ArrayList<Dataset>) locations);
 
