@@ -124,8 +124,9 @@ public class MapViewFragment extends Fragment {
         mMapView.getOverlays().add(this.minimapOverlay);
 
 
-        ////////////////////////////////////////////// Location Manager //////////////////////////////////////////////////////////////////
-        // Location Marker
+        /**
+         * ////////////////////////////////////////////// Location Manager //////////////////////////////////////////////////////////////////
+         */
         GpsMyLocationProvider gpsMyLocationProvider = new GpsMyLocationProvider(ctx);
         gpsMyLocationProvider.setLocationUpdateMinTime(2000); // Setting GPS Update intervall to ...ms
         this.locationOverlay = new MyLocationNewOverlay(gpsMyLocationProvider, mMapView);
@@ -139,7 +140,7 @@ public class MapViewFragment extends Fragment {
 
         mMapView.getOverlays().add(this.locationOverlay);
 
-        //Center to my Postition on Button Click
+        // Center to my current position on Button Click
         // source: https://github.com/osmdroid/osmdroid/blob/19053d1435e8fa4e58b04960b23b0769e99adb66/OpenStreetMapViewer/src/main/java/org/osmdroid/samplefragments/events/SampleAnimatedZoomToLocation.java
         //
         // Location Provider
@@ -159,9 +160,9 @@ public class MapViewFragment extends Fragment {
             public void onClick(View v) {
                 // Checking if currentLocation is set, otherwise app will crash when location is not set and you press the LccationButton - jteske
                 if (currentLocation == null){
-                    Toast.makeText(getActivity(), "Standort noch nicht bestimmt!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.no_location, Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(getActivity(), "Zoom auf aktuellen Standort!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.zoom_on_me, Toast.LENGTH_LONG).show();
                     GeoPoint myPosition = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
                     mMapView.getController().animateTo(myPosition, 14.0, (long) 2000); // animateTo: 1.Location, 2.Zoomlevel, 3.animationspeed in ms (jteske)
                 }
@@ -270,6 +271,11 @@ public class MapViewFragment extends Fragment {
         }
     }
 
+    /**
+     * Requests permissions, if not set
+     *
+     * @param permissions
+     */
     private void requestPermissionsIfNecessary(String[] permissions) {
         ArrayList<String> permissionsToRequest = new ArrayList<>();
         for (String permission : permissions) {

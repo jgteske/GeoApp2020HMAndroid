@@ -1,6 +1,10 @@
 package com.example.geoapp2020.ui.data;
-// source: 6ter_Lehrbrief_GeoApp
-// adapted to fit the Fragment management from jteske 03.07.2020
+/**
+ * source: 6ter_Lehrbrief_GeoApp
+ * adapted to fit the Fragment management from jteske 03.07.2020
+ *
+ * Manages all functions to access the Database and Tables
+ */
 
 
 import android.content.ContentValues;
@@ -23,7 +27,13 @@ public class DBAccess extends SQLiteOpenHelper {
     private String table;
 
 
-
+    /**
+     * Create DBAccess
+     *
+     * @param activity
+     * @param dbName
+     * @param tableSQL
+     */
     public DBAccess(Context activity, String dbName, String tableSQL) {
         super(activity, dbName, null, 1);
         this.tableSQL = tableSQL;
@@ -33,6 +43,12 @@ public class DBAccess extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
     }
 
+    /**
+     * Create DB Access
+     *
+     * @param activity
+     * @param dbName
+     */
     public DBAccess(Context activity, String dbName) {
         super(activity, dbName, null, 1);
         table="table_1";
@@ -41,7 +57,9 @@ public class DBAccess extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
     }
 
-    // determine table name
+    /**
+     * determine table name
+     */
     private void getTableName() {
         String sql = tableSQL.toUpperCase();
         StringTokenizer tokenizer = new StringTokenizer(sql);
@@ -55,8 +73,12 @@ public class DBAccess extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Creates a table within the database, if it doesn't already exist
+     *
+     * @param db
+     */
     @Override
-    // if the table within the database doesn't exist on first access, calls this function to create it
     public void onCreate(SQLiteDatabase db) {
         try {
             // create table
@@ -68,15 +90,23 @@ public class DBAccess extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * If the table within the database does exist, calls this function to update it
+     *
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
-    // if the table within the database does exist, calls this function to update it
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + table);
         onCreate(db);
     }
 
+    /**
+     * Closes database
+     */
     @Override
-    // closes database
     public synchronized void close() {
         if(db != null) {
             db.close();
@@ -85,7 +115,12 @@ public class DBAccess extends SQLiteOpenHelper {
         super.close();
     }
 
-    // adds a row with a Dataset to the table
+    /**
+     * Adds a row with a Dataset to the table
+     *
+     * @param dataset
+     * @return
+     */
     public long addDataset(Dataset dataset) {
         try {
             ContentValues data = createDataObject(dataset);
@@ -97,14 +132,22 @@ public class DBAccess extends SQLiteOpenHelper {
         }
     }
 
-    // creates request of Cursor, orderBy LocationName
+    /**
+     * Create a request of Cursor, orderBy LocationName
+     *
+     * @return
+     */
     public Cursor createListViewCursor() {
         String[] columns = new String[]{"_id", "LocationName", "LocationLatitude", "LocationLongitude", "RecordingDate"};
         // requesting DB with .query
         return db.query(table, columns, null, null, null, null, "LocationName");
     }
 
-    // get list with all datasets
+    /**
+     * Get List<Dataset> array with all datasets
+     *
+     * @return
+     */
     public List<Dataset> readDataset() {
         List<Dataset> result = new ArrayList<Dataset>();
         Cursor cursor = null;
@@ -129,6 +172,11 @@ public class DBAccess extends SQLiteOpenHelper {
         return result;
     }
 
+    /**
+     * Update a Dataset
+     *
+     * @param ds
+     */
     public void updateDataset(Dataset ds) {
         try {
             ContentValues data = createDataObject(ds);
@@ -140,6 +188,11 @@ public class DBAccess extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Delete an exciting Dataset
+     *
+     * @param ds
+     */
     public void deletDataset(Dataset ds) {
         try {
             db.delete(table, "id = " + ds.id, null);
@@ -149,6 +202,12 @@ public class DBAccess extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Create a Dataset
+     *
+     * @param cursor
+     * @return
+     */
     private Dataset createDataset(Cursor cursor) {
         Dataset ds = new Dataset();
         ds.id = cursor.getLong(0);
@@ -165,6 +224,12 @@ public class DBAccess extends SQLiteOpenHelper {
         return ds;
     }
 
+    /**
+     * Create a DataObject
+     *
+     * @param ds
+     * @return
+     */
     private ContentValues createDataObject(Dataset ds) {
         ContentValues data = new ContentValues();
         data.put("LocationName", ds.LocationName);

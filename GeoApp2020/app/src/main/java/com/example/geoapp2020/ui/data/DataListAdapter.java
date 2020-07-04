@@ -1,6 +1,11 @@
 package com.example.geoapp2020.ui.data;
-// based on this example: https://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView
-// adapted to fit the Fragment management from jteske 03.07.2020
+/**
+ * based on this example: https://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView
+ * adapted to fit the Fragment management from jteske 03.07.2020
+ *
+ * Creating an Adapter to load an ArrayList<Dataset> into a listView
+ */
+
 
 import android.content.Context;
 import android.view.LayoutInflater;

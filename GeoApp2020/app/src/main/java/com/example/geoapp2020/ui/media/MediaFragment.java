@@ -58,6 +58,11 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
         return root;
     }
 
+    /**
+     * Prepare video-files - get videoPaths, ...
+     *
+     * @param videoName
+     */
     private void prepareVideo(String videoName){
         if (videoName == "video_1.mp4"){
             //videoView.setVisibility(View.VISIBLE);
@@ -79,7 +84,11 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
         }
     }
 
-    // Function to play the video
+    /**
+     * Play the video
+     *
+     * @param videoName
+     */
     private void playVideo(String videoName) {
         if (videoName == "video_1.mp4"){
 

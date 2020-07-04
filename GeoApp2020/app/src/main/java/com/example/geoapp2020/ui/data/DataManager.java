@@ -1,7 +1,10 @@
 package com.example.geoapp2020.ui.data;
-// source: 6ter_Lehrbrief_GeoApp
-// adapted to fit the Fragment management from jteske 03.07.2020
-// purpose is to create function to call on button-click, filling the database with content!!! - johann teske
+/**
+ * source: 6ter_Lehrbrief_GeoApp
+ * adapted to fit the Fragment management from jteske 03.07.2020
+ *
+ * purpose is to create function to call on button-click, filling the database with content!!! - johann teske
+ */
 
 import android.content.Context;
 import android.widget.Toast;

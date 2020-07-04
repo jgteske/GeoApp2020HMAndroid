@@ -34,6 +34,15 @@ public class GalleryFragment extends Fragment implements OnItemClickListener {
 
         return root;
     }
+
+    /**
+     * Creates an on Click listener for every single Image in the gallery
+     *
+     * @param parent
+     * @param v
+     * @param pos
+     * @param id
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
         int resid = (Integer) adapter.getItem(pos);

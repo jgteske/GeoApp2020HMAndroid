@@ -1,6 +1,10 @@
 package com.example.geoapp2020.ui.data;
-// source: 6ter_Lehrbrief_GeoApp
-// adapted to fit the Fragment management from jteske 03.07.2020
+/**
+ * source: 6ter_Lehrbrief_GeoApp
+ * adapted to fit the Fragment management from jteske 03.07.2020
+ *
+ * Creating a Fragment to show LocationData
+ */
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,5 +1,10 @@
 package com.example.geoapp2020.ui.mapview;
-// Base is this source-code from osmdroid: https://github.com/osmdroid/osmdroid/blob/e2e4cd8470e53fc081fc5e0a6026c90e23e36f81/osmdroid-android/src/main/java/org/osmdroid/views/overlay/mylocation/GpsMyLocationProvider.java
+/**
+ * // Base is this source-code from osmdroid:
+ * https://github.com/osmdroid/osmdroid/blob/e2e4cd8470e53fc081fc5e0a6026c90e23e36f81/osmdroid-android/src/main/java/org/osmdroid/views/overlay/mylocation/GpsMyLocationProvider.java
+ *
+ * Provides Current Location
+ */
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,7 @@
 package com.example.geoapp2020.ui.webview;
+/**
+ * WebView model to display the Cases/Deaths of Corona in germany/bavaria - 2020
+ */
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

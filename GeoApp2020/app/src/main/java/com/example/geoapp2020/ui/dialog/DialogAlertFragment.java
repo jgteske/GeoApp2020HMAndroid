@@ -1,5 +1,9 @@
 package com.example.geoapp2020.ui.dialog;
-// Based on https://developer.android.com/reference/android/app/DialogFragment
+/**
+ * Based on https://developer.android.com/reference/android/app/DialogFragment
+ *
+ * Creates a DialogFragment that is displayed as an Alert
+ */
 
 import android.app.AlertDialog;
 import android.app.Dialog;

@@ -1,4 +1,7 @@
 package com.example.geoapp2020.ui.webview;
+/**
+ * WebView model to display the Homepage of all University projects 2020 on the server
+ */
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,12 +10,9 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.geoapp2020.R;

@@ -1,4 +1,9 @@
 package com.example.geoapp2020.ui.gallery;
+/**
+ * Creating a View to show an image after Clicking it
+ *
+ * Changing intent to open the Image in a new layout
+ */
 
 import android.app.Activity;
 import android.os.Bundle;

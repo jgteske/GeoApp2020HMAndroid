@@ -58,6 +58,9 @@
     <string name="dialog_tip">Tipps for Free hier!</string>
     <string name="dialog_alert">Alert Text hier</string>
 
+    <string name="no_location">Standort nicht bestimmt!</string>
+    <string name="zoom_on_me">Zoom auf aktuellen Standort!</string>
+
     <!-- MapView -->
     <string name="button_location_marker_map">Zeige meine Standorte auf der Karte</string>
 

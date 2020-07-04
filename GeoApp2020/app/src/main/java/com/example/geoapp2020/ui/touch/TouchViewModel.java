@@ -39,6 +39,11 @@ public class TouchViewModel extends View {
         setFocusable(true);
     }
 
+    /**
+     * Creates the draggable image
+     *
+     * @param canvas
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -57,6 +62,12 @@ public class TouchViewModel extends View {
     }
 
 
+    /**
+     * Creating an onTouchEvent to put the image on touched location
+     *
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -81,8 +92,13 @@ public class TouchViewModel extends View {
     }
 
 
-    // function to convert an xml drawable into a bitmap
-    // source: André - https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
+    /**
+     * CREATE A BITMAP FROM DRAWABLE
+     * source: André - https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
+     *
+     * @param drawable
+     * @return
+     */
     public static Bitmap drawableToBitmap (Drawable drawable) {
         Bitmap bitmap = null;
 
