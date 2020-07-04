@@ -3,10 +3,10 @@ package com.example.geoapp2020.ui.touch;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.view.KeyEvent;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -31,7 +31,7 @@ public class TouchViewModel extends View {
 
         // loads point bitmap
         Resources resources = getResources();
-        pointBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_position);
+        pointBitmap = drawableToBitmap(resources.getDrawable(R.drawable.ic_danger_center));
 
         // antialiasing
         iconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -79,4 +79,31 @@ public class TouchViewModel extends View {
         }
         return true;
     }
+
+
+    // function to convert an xml drawable into a bitmap
+    // source: André - https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
+    public static Bitmap drawableToBitmap (Drawable drawable) {
+        Bitmap bitmap = null;
+
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if(bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
+
 }
