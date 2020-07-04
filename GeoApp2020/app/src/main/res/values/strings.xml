@@ -30,6 +30,8 @@
             <string name="title_mapview">Mapview von Johann</string>
         <string name="menu_locations">Standorte und Routen</string>
             <string name="title_locations">Meine Standorte und Routen</string>
+        <string name="menu_tracker">GPS-Tracker</string>
+            <string name="title_tracker">GPS-Tracker</string>
 
     <string name="home_second">Home Second</string>
 
@@ -58,5 +60,18 @@
 
     <!-- MapView -->
     <string name="button_location_marker_map">Zeige meine Standorte auf der Karte</string>
+
+    <!-- GnssGps Tracker -->
+    <string name="start">Start</string>
+    <string name="stop">Stopp</string>
+    <string name="save">Speichern</string>
+    <string name="ok">OK</string>
+    <string name="saveDialogTitle">Speichern</string>
+    <string name="InternalSave">intern</string>
+    <string name="ExternSave">SD-Karte</string>
+    <string name="altitude">Höhe</string>
+    <string name="longitude">geograf. Länge</string>
+    <string name="latitude">geograf. Breite</string>
+    <string name="noGPS">Kein GPS Empfänger. Bitte aktiveren!</string>
 
 </resources>

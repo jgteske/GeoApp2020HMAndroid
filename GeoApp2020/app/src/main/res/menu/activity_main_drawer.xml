@@ -51,9 +51,13 @@
                 android:icon="@drawable/ic_menu_map"
                 android:title="@string/menu_map" />
                 <item
-                    android:id="@+id/nav_locations"
+                android:id="@+id/nav_locations"
+                android:icon="@drawable/ic_menu_map"
+                android:title="@string/menu_locations" />
+                <item
+                    android:id="@+id/nav_gps_tracker"
                     android:icon="@drawable/ic_menu_map"
-                    android:title="@string/menu_locations" />
+                    android:title="@string/title_tracker" />
             </group>
         </menu>
     </item>

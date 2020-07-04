@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.media.MediaFragment">
+
+    <!-- Title Area -->
+    <LinearLayout
+        android:id="@+id/title_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title_margin_top"
+        android:layout_marginLeft="@dimen/general_margin"
+        android:layout_marginRight="@dimen/general_margin"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/title_tracker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_size"
+            android:textColor="@color/colorTitle"
+            android:text="@string/title_tracker" />
+    </LinearLayout>
+
+    <!-- Content Area -->
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/general_margin"
+        app:layout_constraintTop_toBottomOf="@id/title_area"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TableLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/tableLayout">
+                <TableRow>
+                    <TextView
+                        android:id="@+id/text_latitude"
+                        android:text="@string/latitude"
+                        android:layout_column="1"
+                        android:padding="3dip"/>
+                    <TextView
+                        android:text=""
+                        android:layout_column="2"
+                        android:id="@+id/text_view_latitude"
+                        android:padding="3dip"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/text_longitude"
+                        android:text="@string/longitude"
+                        android:layout_column="1"
+                        android:padding="3dip"/>
+                    <TextView
+                        android:text=""
+                        android:layout_column="2"
+                        android:id="@+id/text_view_longitude"
+                        android:padding="3dip"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/text_altitude"
+                        android:text="@string/altitude"
+                        android:layout_column="1"
+                        android:padding="3dip"/>
+                    <TextView
+                        android:text=""
+                        android:layout_column="2"
+                        android:id="@+id/text_view_altitude"
+                        android:padding="3dip"/>
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+                <Button
+                    android:text="@string/start"
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Button>
+                <Button
+                    android:text="@string/stop"
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Button>
+                <Button
+                    android:text="@string/save"
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Button>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
