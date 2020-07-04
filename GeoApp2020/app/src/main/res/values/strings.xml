@@ -56,4 +56,7 @@
     <string name="dialog_tip">Tipps for Free hier!</string>
     <string name="dialog_alert">Alert Text hier</string>
 
+    <!-- MapView -->
+    <string name="button_location_marker_map">Zeige meine Standorte auf der Karte</string>
+
 </resources>
