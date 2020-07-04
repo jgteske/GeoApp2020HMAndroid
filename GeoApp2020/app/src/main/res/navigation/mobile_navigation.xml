@@ -68,4 +68,10 @@
         android:name="com.example.geoapp2020.ui.mapview.MapViewFragment"
         android:label="@string/menu_map"
         tools:layout="@layout/fragment_mapview" />
+
+    <fragment
+        android:id="@+id/nav_locations"
+        android:name="com.example.geoapp2020.ui.data.DataFragment"
+        android:label="@string/menu_locations"
+        tools:layout="@layout/fragment_data" />
 </navigation>

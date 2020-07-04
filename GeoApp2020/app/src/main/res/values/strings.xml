@@ -28,6 +28,8 @@
             <string name="title_touch">ToucheventApp</string>
         <string name="menu_map">Map</string>
             <string name="title_mapview">Mapview von Johann</string>
+        <string name="menu_locations">Standorte und Routen</string>
+            <string name="title_locations">Meine Standorte und Routen</string>
 
     <string name="home_second">Home Second</string>
 
