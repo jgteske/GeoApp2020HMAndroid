@@ -245,7 +245,7 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
     private void promptWarning(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         Resources res = getResources();
-        String text = res.getString(R.string.noGPS);
+        String text = res.getString(R.string.dialog_no_location);
         builder.setMessage(text);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

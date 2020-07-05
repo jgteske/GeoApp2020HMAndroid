@@ -166,7 +166,7 @@ public class MapViewFragment extends Fragment {
                 if (currentLocation == null){
                     Toast.makeText(getActivity(), R.string.dialog_no_location, Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(getActivity(), R.string.zoom_on_me, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.dialog_zoom_on_me, Toast.LENGTH_LONG).show();
                     GeoPoint myPosition = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
                     mMapView.getController().animateTo(myPosition, 14.0, (long) 2000); // animateTo: 1.Location, 2.Zoomlevel, 3.animationspeed in ms (jteske)
                 }
