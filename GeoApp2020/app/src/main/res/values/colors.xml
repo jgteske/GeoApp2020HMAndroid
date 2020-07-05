@@ -20,4 +20,7 @@
     <color name="button_highlight">#FFFFFF</color>
     <color name="button_active">#C8966FFF</color>
 
+    <!-- Background Colors-->
+    <color name="background_light">#C8F3EDD8</color>
+
 </resources>
