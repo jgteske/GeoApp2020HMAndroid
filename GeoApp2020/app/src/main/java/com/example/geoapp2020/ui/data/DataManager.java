@@ -40,27 +40,23 @@ public class DataManager {
          * Cancels the attempt to write the database in this case and pushes a Comment!
          */
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             Resources res = context.getResources();
-            String text = res.getString(R.string.dialog_no_location);
-            text += "\n\nUND/ODER\n\n" + res.getString(R.string.dialog_no_writingpermission) + "\n\n" + res.getString(R.string.dialog_try_again);
+            String text = res.getString(R.string.dialog_no_writingpermission) + "\n\n" + res.getString(R.string.dialog_try_again);
             builder.setMessage(text);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    requestPermissionsIfNecessary(context, new String[] {
-                            // WRITE_EXTERNAL_STORAGE is required in order to show the map
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                    });
-
                     dialog.dismiss();
-
-                    // RETURN important to prevent from creating the database after clicking "Ok" - otherwise the database will be created without the table - jteske 05.07.2020
-                    return;
                 }
             });
             AlertDialog dialog = builder.create();
             dialog.show();
+            // requesting permissions
+            requestPermissionsIfNecessary(context, new String[] {
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            });
+            // RETURN important to prevent from creating the database after clicking "Ok" - otherwise the database will be created without the table - jteske 05.07.2020
             return;
         }
 

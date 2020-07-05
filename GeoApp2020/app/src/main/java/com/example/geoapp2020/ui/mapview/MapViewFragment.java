@@ -174,13 +174,15 @@ public class MapViewFragment extends Fragment {
         });
         ////////////////////////////////////////////// End of Location Manager //////////////////////////////////////////////////////////////////
 
-        // Button to save your current Location in an Database
+        /**
+         * Button to save your current Location in a Database
+         */
         Button button = (Button) root.findViewById(R.id.button_save_position);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // giving the Activity Context, Latitude nad Longitude of the current location to put into an sqlite-database - jteske
                 if (currentLocation != null){
+                    // provides the Activity Context, Latitude nad Longitude of the current location to put into an sqlite-database - jteske
                     DataManager dm = new DataManager(ctx, currentLocation.getLatitude(), currentLocation.getLongitude());
                 }else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
@@ -192,14 +194,13 @@ public class MapViewFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
                             requestPermissionsIfNecessary(new String[] {
-                                    // WRITE_EXTERNAL_STORAGE is required in order to show the map
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                     Manifest.permission.ACCESS_FINE_LOCATION
                             });
                         }
                     });
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    return;
                 }
             }
         });
