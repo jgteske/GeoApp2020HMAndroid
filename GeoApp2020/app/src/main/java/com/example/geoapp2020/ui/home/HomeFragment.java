@@ -1,4 +1,7 @@
 package com.example.geoapp2020.ui.home;
+/**
+ * HomeScreen for this Application
+ */
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +23,7 @@ import androidx.navigation.Navigation;
 import com.example.geoapp2020.R;
 import com.example.geoapp2020.ui.dialog.DialogAlertFragment;
 import com.example.geoapp2020.ui.dialog.DialogTipFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeFragment extends Fragment {
 
@@ -123,6 +127,15 @@ public class HomeFragment extends Fragment {
                 DialogFragment newFragment = DialogAlertFragment.newInstance(
                         R.string.dialog_alert);
                 newFragment.show(getFragmentManager(), "dialog");
+            }
+        });
+
+        // floating button
+        FloatingActionButton fab = root.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_gps_tracker, null));
             }
         });
 
