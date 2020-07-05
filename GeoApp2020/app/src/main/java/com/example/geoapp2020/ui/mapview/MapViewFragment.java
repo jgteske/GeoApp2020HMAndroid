@@ -3,9 +3,13 @@ package com.example.geoapp2020.ui.mapview;
 // edited, adapted and changed by jteske
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -160,7 +164,7 @@ public class MapViewFragment extends Fragment {
             public void onClick(View v) {
                 // Checking if currentLocation is set, otherwise app will crash when location is not set and you press the LccationButton - jteske
                 if (currentLocation == null){
-                    Toast.makeText(getActivity(), R.string.no_location, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.dialog_no_location, Toast.LENGTH_LONG).show();
                 }else {
                     Toast.makeText(getActivity(), R.string.zoom_on_me, Toast.LENGTH_LONG).show();
                     GeoPoint myPosition = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
@@ -176,7 +180,21 @@ public class MapViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // giving the Activity Context, Latitude nad Longitude of the current location to put into an sqlite-database - jteske
-                DataManager dm = new DataManager(ctx, currentLocation.getLatitude(), currentLocation.getLongitude());
+                if (currentLocation != null){
+                    DataManager dm = new DataManager(ctx, currentLocation.getLatitude(), currentLocation.getLongitude());
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                    Resources res = getResources();
+                    String text = res.getString(R.string.dialog_no_location);
+                    builder.setMessage(text);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
             }
         });
 
@@ -190,6 +208,7 @@ public class MapViewFragment extends Fragment {
         // Toggle button to show your currently saved positions on the map
         Switch switchButton = (Switch) root.findViewById(R.id.button_switch_locations);
         switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {

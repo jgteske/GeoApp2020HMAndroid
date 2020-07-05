@@ -58,7 +58,7 @@
     <string name="dialog_tip">Tipps for Free hier!</string>
     <string name="dialog_alert">Alert Text hier</string>
 
-    <string name="no_location">Standort nicht bestimmt!</string>
+    <string name="dialog_no_location">Standort konnte nicht bestimmt werden! Bitte GPS einschalten!</string>
     <string name="zoom_on_me">Zoom auf aktuellen Standort!</string>
 
     <!-- MapView -->
