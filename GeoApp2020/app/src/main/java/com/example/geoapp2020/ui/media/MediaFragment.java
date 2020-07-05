@@ -19,7 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.geoapp2020.R;
 
 
-public class MediaFragment extends Fragment implements View.OnClickListener, SurfaceHolder.Callback {
+public class MediaFragment extends Fragment implements SurfaceHolder.Callback {
 
     private MediaViewModel mediaViewModel;
 
@@ -47,11 +47,9 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
         // BackVideo Clickable to play it
         videoView = (VideoView) root.findViewById(R.id.video_view);
         prepareVideo(VIDEO_DATEI);
-        videoView.setOnClickListener(this);
 
         videoView1 = (VideoView) root.findViewById(R.id.video_view1);
         prepareVideo(VIDEO_DATEI_1);
-        videoView1.setOnClickListener(this);
 
 
 
@@ -59,7 +57,7 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
     }
 
     /**
-     * Prepare video-files - get videoPaths, ...
+     * Prepare video-files - get videoPaths, get First Frame to show in VideoView and ads the MediaController
      *
      * @param videoName
      */
@@ -84,33 +82,6 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
         }
     }
 
-    /**
-     * Play the video
-     *
-     * @param videoName
-     */
-    private void playVideo(String videoName) {
-        if (videoName == "video_1.mp4"){
-
-            if(videoView.isPlaying()) {
-                // Do nothing (don't start the video)
-                //videoView.stopPlayback();
-            }
-
-            videoView.start();
-            videoView.requestFocus();
-
-        }else if(videoName == "video_2.mp4"){
-
-            if(videoView1.isPlaying()) {
-                // Do nothing (don't start the video)
-                //videoView1.stopPlayback();
-            }
-
-            videoView1.start();
-            videoView1.requestFocus();
-        }
-    }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -127,12 +98,4 @@ public class MediaFragment extends Fragment implements View.OnClickListener, Sur
         Log.d("carpelibrum", " camera surface destroyed");
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.video_view: playVideo(VIDEO_DATEI);
-                break;
-            case R.id.video_view1: playVideo(VIDEO_DATEI_1);
-        }
-    }
 }
