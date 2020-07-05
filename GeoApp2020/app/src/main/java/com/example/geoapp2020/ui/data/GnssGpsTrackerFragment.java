@@ -159,7 +159,7 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
             final EditText filename = (EditText)
                     dialog.findViewById(R.id.editTextDateiname);
             filename.setText("dateiname.gpx");
-            Button save = (Button) dialog.findViewById(R.id.speichernOK);
+            Button save = (Button) dialog.findViewById(R.id.button_save_Ok);
             save.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Editable ed = filename.getText();
