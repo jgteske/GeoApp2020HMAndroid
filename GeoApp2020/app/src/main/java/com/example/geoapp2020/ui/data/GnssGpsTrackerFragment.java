@@ -75,7 +75,6 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
 
         // request permission if necessary
         requestPermissionsIfNecessary(new String[]{
-                // WRITE_EXTERNAL_STORAGE is required in order to show the map
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_FINE_LOCATION
         });
@@ -118,10 +117,19 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
      */
     public void onClick(View v) {
         if (v == startButton) {
-            startButton.setEnabled(false);
-            stopButton.setEnabled(true);
-            saveButton.setEnabled(false);
-            collectData = true;
+            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                startButton.setEnabled(false);
+                stopButton.setEnabled(true);
+                saveButton.setEnabled(false);
+                collectData = true;
+            }else{
+                // request permission if necessary
+                requestPermissionsIfNecessary(new String[]{
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                });
+            }
+
         } else if (v == stopButton) {
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
