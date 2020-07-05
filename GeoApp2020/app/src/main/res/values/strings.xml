@@ -68,6 +68,7 @@
     <string name="button_location_marker_map">Zeige meine Standorte auf der Karte</string>
 
     <!-- GnssGps Tracker -->
+    <string name="file_saved">Datei wurde gespeichert!</string>
     <string name="start">Start</string>
     <string name="stop">Stopp</string>
     <string name="save">Speichern</string>

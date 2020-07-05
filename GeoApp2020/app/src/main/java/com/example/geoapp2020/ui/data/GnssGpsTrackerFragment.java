@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -147,7 +148,7 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
     /**
      * dialog to save collected data
      */
-    private void saveCollectedData(Context context) {
+    private void saveCollectedData(final Context context) {
         try {
             final Dialog dialog = new Dialog(context);
             dialog.setOwnerActivity(getActivity());
@@ -165,6 +166,7 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
                     try {
                         writePositions(ed.toString());
                         positions.clear();
+                        Toast.makeText(context, R.string.file_saved, Toast.LENGTH_LONG).show();
                     } catch (Exception ex) {
                         Log.d("gpxTracker", ex.getMessage());
                     }
