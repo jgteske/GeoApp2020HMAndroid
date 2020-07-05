@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,13 @@ public class DataFragment extends Fragment {
         ListView listView = (ListView) root.findViewById(R.id.list_view_location);
         adapter = new DataListAdapter(getContext(), (ArrayList<Dataset>) locations);
 
-        listView.setAdapter(adapter);
+        if (locations.size() > 0) {
+            listView.setAdapter(adapter);
+        }else {
+            LinearLayout emptyListFiller = (LinearLayout) root.findViewById(R.id.no_location_list);
+            emptyListFiller.setVisibility(emptyListFiller.VISIBLE);
+        }
+
 
         return root;
     }

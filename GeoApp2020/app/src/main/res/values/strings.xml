@@ -62,6 +62,7 @@
     <string name="dialog_no_writingpermission">Keine Rechte auf externen Speicher zu scheiben!</string>
     <string name="dialog_try_again">Bitte versuche es noch einmal!</string>
     <string name="zoom_on_me">Zoom auf aktuellen Standort!</string>
+    <string name="dialog_no_list_items">Es sind keine Standorte gespeichert!</string>
 
     <!-- MapView -->
     <string name="button_location_marker_map">Zeige meine Standorte auf der Karte</string>
