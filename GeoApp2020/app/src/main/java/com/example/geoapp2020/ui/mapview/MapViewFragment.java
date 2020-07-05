@@ -186,10 +186,16 @@ public class MapViewFragment extends Fragment {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
                     Resources res = getResources();
                     String text = res.getString(R.string.dialog_no_location);
+                    text += "\n\n" + res.getString(R.string.dialog_try_again);
                     builder.setMessage(text);
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
+                            requestPermissionsIfNecessary(new String[] {
+                                    // WRITE_EXTERNAL_STORAGE is required in order to show the map
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                    Manifest.permission.ACCESS_FINE_LOCATION
+                            });
                         }
                     });
                     AlertDialog dialog = builder.create();

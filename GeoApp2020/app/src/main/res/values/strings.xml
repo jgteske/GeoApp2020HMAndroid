@@ -59,6 +59,8 @@
     <string name="dialog_alert">Alert Text hier</string>
 
     <string name="dialog_no_location">Standort konnte nicht bestimmt werden! Bitte GPS einschalten!</string>
+    <string name="dialog_no_writingpermission">Keine Rechte auf externen Speicher zu scheiben!</string>
+    <string name="dialog_try_again">Bitte versuche es noch einmal!</string>
     <string name="zoom_on_me">Zoom auf aktuellen Standort!</string>
 
     <!-- MapView -->
