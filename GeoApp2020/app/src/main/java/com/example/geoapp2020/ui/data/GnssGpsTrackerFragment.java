@@ -193,15 +193,22 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
         }
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         // write file head
-        writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
-        writer.newLine();
-        writer.write("<gpx xmlns=\"http://www.topografix.com/GPX/1/1\" version=\"1.1\" creator=\"jteske\"");
-        writer.newLine();
-        writer.write("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
-        writer.newLine();
+        writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\n");
+        writer.write("<gpx xmlns=\"http://www.topografix.com/GPX/1/1\" version=\"1.1\" creator=\"jteske\"\n");
+        writer.write("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n");
         writer.write("xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1/gpx.xsd\">");
         writer.newLine();
-        writer.write("<rte>");
+        writer.write("<metadata>\n");
+        writer.write("\t<name>" + filename.replace(".gpx","") + "</name>\n");
+        writer.write("\t<desc>This GPX-File has been created with an GPS-Tracker implemented in the GeoApp2020</desc>\n");
+        writer.write("\t<author>\n");
+        writer.write("\t\t<name>" + android.os.Build.MODEL + "</name>\n");
+        writer.write("\t</author>\n");
+        writer.write("</metadata>");
+        writer.newLine();
+        writer.write("<rte>\n");
+        writer.write("\t<name>Track-GeoApp2020</name>");
+        writer.newLine();
         // write positions
         for (Location loc : positions) {
             saveLocation(loc, writer);
@@ -219,14 +226,14 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
      * @param writer
      */
     private void saveLocation(Location loc, BufferedWriter writer) throws IOException {
-        writer.write("<rtept lat=\"" + loc.getLatitude() + "\" lon=\"" + loc.getLongitude() + "\">");
+        writer.write("\t<rtept lat=\"" + loc.getLatitude() + "\" lon=\"" + loc.getLongitude() + "\">");
         writer.newLine();
-        writer.write("<ele>" + loc.getAltitude() + "</ele>");
+        writer.write("\t<ele>" + loc.getAltitude() + "</ele>");
         writer.newLine();
         String zeit = gpxTimeFormat.format(new Date(loc.getTime()));
-        writer.write("<time>" + zeit + "</time>");
+        writer.write("\t<time>" + zeit + "</time>");
         writer.newLine();
-        writer.write("</rtept>");
+        writer.write("\t</rtept>");
         writer.newLine();
     }
 
