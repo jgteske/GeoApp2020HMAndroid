@@ -36,13 +36,6 @@ public class MediaFragment extends Fragment implements SurfaceHolder.Callback {
 
         View root = inflater.inflate(R.layout.fragment_media, container, false);
 
-        final TextView textView = root.findViewById(R.id.text_media);
-        mediaViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
 
         // BackVideo Clickable to play it
         videoView = (VideoView) root.findViewById(R.id.video_view);
