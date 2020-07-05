@@ -270,6 +270,16 @@ public class MapViewFragment extends Fragment {
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
         mMapView.onResume(); //needed for compass, my location overlays, v6.0.0 and up
+
+        // reload the location manager after permission has been granted
+        myLocationProvider.startLocationProvider(new IMyLocationConsumer() {
+            @Override
+            public void onLocationChanged(Location location, IMyLocationProvider source) {
+                //myLocationProvider.stopLocationProvider();
+                currentLocation = location;
+
+            }
+        });
     }
 
     @Override
