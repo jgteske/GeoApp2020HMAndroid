@@ -1,6 +1,11 @@
 package com.example.geoapp2020.ui.data;
-// source: 6ter_Lehrbrief_GeoApp
-// adapted to fit the Fragment management from jteske 04.07.2020
+/**
+ * source: 6ter_Lehrbrief_GeoApp
+ * adapted to fit the Fragment management from jteske 04.07.2020
+ *
+ * A Tracker to track a route (<rte>) with GPS into a .gpx-File and save it on your device
+ */
+
 
 import android.Manifest;
 import android.app.Activity;
@@ -43,208 +48,219 @@ import java.util.List;
 public class GnssGpsTrackerFragment extends Fragment implements LocationListener, View.OnClickListener {
 
 
-        private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
+    private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
 
 
-        private TextView showLon;   // show longitude
-        private TextView showLat; // shot latitude
-        private TextView showAlt; // show altitude
+    private TextView showLon;   // show longitude
+    private TextView showLat; // shot latitude
+    private TextView showAlt; // show altitude
 
-        private LocationManager locationManager;
+    private LocationManager locationManager;
 
-        private SimpleDateFormat gpxTimeFormat;
+    private SimpleDateFormat gpxTimeFormat;
 
-        private Button startButton;
-        private Button stopButton;
-        private Button saveButton;
+    private Button startButton;
+    private Button stopButton;
+    private Button saveButton;
 
-        private boolean collectData;
-        private List<Location> positions;
+    private boolean collectData;
+    private List<Location> positions;
 
 
-        public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-            final View root = inflater.inflate(R.layout.fragment_tracker, container, false);
-            Context context = getContext();
+        final View root = inflater.inflate(R.layout.fragment_tracker, container, false);
+        Context context = getContext();
+
+        // request permission if necessary
+        requestPermissionsIfNecessary(new String[]{
+                // WRITE_EXTERNAL_STORAGE is required in order to show the map
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        });
 
 
-            locationManager = (LocationManager)
-                    context.getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager)
+                context.getSystemService(Context.LOCATION_SERVICE);
 
-            // check if location is enabled
-            if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
-                promptWarning(context);
-            }
+        // check if location is enabled
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            promptWarning(context);
+        }
 
-            // declare buttons
-            // start Button
-            startButton = (Button) root.findViewById(R.id.button1);
-            startButton.setOnClickListener(this);
-            // stop Button
-            stopButton = (Button) root.findViewById(R.id.button2);
-            stopButton.setOnClickListener(this);
+        // declare buttons
+        // start Button
+        startButton = (Button) root.findViewById(R.id.button1);
+        startButton.setOnClickListener(this);
+        // stop Button
+        stopButton = (Button) root.findViewById(R.id.button2);
+        stopButton.setOnClickListener(this);
+        stopButton.setEnabled(false);
+        // save Button
+        saveButton = (Button) root.findViewById(R.id.button3);
+        saveButton.setOnClickListener(this);
+        saveButton.setEnabled(false);
+        collectData = false;
+
+        positions = new ArrayList<Location>();
+        showLat = (TextView) root.findViewById(R.id.text_view_latitude);
+        showLon = (TextView) root.findViewById(R.id.text_view_longitude);
+        showAlt = (TextView) root.findViewById(R.id.text_view_altitude);
+        gpxTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+
+        return root;
+    }
+
+    /**
+     * manages on click function for buttons
+     */
+    public void onClick(View v) {
+        if (v == startButton) {
+            startButton.setEnabled(false);
+            stopButton.setEnabled(true);
+            saveButton.setEnabled(false);
+            collectData = true;
+        } else if (v == stopButton) {
+            startButton.setEnabled(true);
             stopButton.setEnabled(false);
-            // save Button
-            saveButton = (Button) root.findViewById(R.id.button3);
-            saveButton.setOnClickListener(this);
+            saveButton.setEnabled(true);
+            collectData = false;
+        } else if (v == saveButton) {
+            startButton.setEnabled(true);
+            stopButton.setEnabled(false);
             saveButton.setEnabled(false);
             collectData = false;
+            saveCollectedData(getContext());
+        }
+    }
 
-            positions = new ArrayList<Location>();
-            showLat = (TextView) root.findViewById(R.id.text_view_latitude);
-            showLon = (TextView) root.findViewById(R.id.text_view_longitude);
-            showAlt = (TextView) root.findViewById(R.id.text_view_altitude);
-            gpxTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-            requestPermissionsIfNecessary(new String[] {
-                    // WRITE_EXTERNAL_STORAGE is required in order to show the map
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-            });
-
-            return root;
-        }
-
-        /**
-         * manages on click function for buttons
-         */
-        public void onClick(View v) {
-            if(v == startButton) {
-                startButton.setEnabled(false);
-                stopButton.setEnabled(true);
-                saveButton.setEnabled(false);
-                collectData = true;
-            }
-            else if(v == stopButton) {
-                startButton.setEnabled(true);
-                stopButton.setEnabled(false);
-                saveButton.setEnabled(true);
-                collectData = false;
-            }
-            else if(v == saveButton){
-                startButton.setEnabled(true);
-                stopButton.setEnabled(false);
-                saveButton.setEnabled(false);
-                collectData = false;
-                saveCollectedData(getContext());
-            }
-        }
-        /**
-         * dialog to save collected data
-         */
-        private void saveCollectedData(Context context) {
-            try {
-                final Dialog dialog = new Dialog(context);
-                dialog.setOwnerActivity(getActivity());
-                dialog.setContentView(R.layout.save);
-                // get resource String and set it to the dialog Title
-                Resources res = getResources();
-                dialog.setTitle(res.getText(R.string.saveDialogTitle));
-                final EditText filename = (EditText)
-                        dialog.findViewById(R.id.editTextDateiname);
-                filename.setText("dateiname.gpx");
-                Button save = (Button) dialog.findViewById(R.id.speichernOK);
-                save.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Editable ed = filename.getText();
-                        try {
-                            writePositions(ed.toString());
-                            positions.clear();
-                        }
-                        catch(Exception ex) {
-                            Log.d("gpxTracker", ex.getMessage());
-                        }
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-            }
-            catch(Exception ex) {
-                Log.d("gpxTracker", ex.getMessage());
-            }
-        }
-        /**
-         * write file onto the external or internal storage gpx-route (.gpx)
-         * @throws Exception
-         */
-        private void writePositions(String filename) throws Exception {
-            File sdCard = Environment.getExternalStorageDirectory();
-            boolean sdCardExists = (sdCard.exists() && sdCard.canWrite());
-            File file;
-            if(sdCardExists) {
-                file = new File(sdCard.getAbsolutePath() + File.separator + filename);
-            }
-            else {
-                file = new File(Environment.DIRECTORY_DOWNLOADS + File.separator + filename);;
-            }
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            // write file head
-            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
-            writer.newLine();
-            writer.write("<gpx xmlns=\"http://www.topografix.com/GPX/1/1\" version=\"1.1\" creator=\"jteske\"");
-            writer.newLine();
-            writer.write("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
-            writer.newLine();
-            writer.write("xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1/gpx.xsd\">");
-            writer.newLine();
-            writer.write("<rte>");
-            // write positions
-            for(Location loc : positions) {
-                saveLocation(loc, writer);
-            }
-            // write file end
-            writer.write("</rte>");
-            writer.newLine();
-            writer.write("</gpx>");
-            writer.close();
-        }
-        /**
-         * parses location into writer to generate a gpx track
-         * @param loc
-         * @param writer
-         */
-        private void saveLocation(Location loc, BufferedWriter writer) throws IOException
-        {
-            writer.write("<rtept lat=\"" + loc.getLatitude() + "\" lon=\"" + loc.getLongitude() + "\">");
-            writer.newLine();
-            writer.write("<ele>" + loc.getAltitude() + "</ele>");
-            writer.newLine();
-            String zeit = gpxTimeFormat.format(new Date(loc.getTime()));
-            writer.write("<time>" + zeit + "</time>");
-            writer.newLine();
-            writer.write("</rtept>");
-            writer.newLine();
-        }
-        /**
-         *  prompt user to activate GPS
-         */
-        private void promptWarning(Context context) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    /**
+     * dialog to save collected data
+     */
+    private void saveCollectedData(Context context) {
+        try {
+            final Dialog dialog = new Dialog(context);
+            dialog.setOwnerActivity(getActivity());
+            dialog.setContentView(R.layout.save);
+            // get resource String and set it to the dialog Title
             Resources res = getResources();
-            String text = res.getString(R.string.noGPS);
-            builder.setMessage(text);
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
+            dialog.setTitle(res.getText(R.string.saveDialogTitle));
+            final EditText filename = (EditText)
+                    dialog.findViewById(R.id.editTextDateiname);
+            filename.setText("dateiname.gpx");
+            Button save = (Button) dialog.findViewById(R.id.speichernOK);
+            save.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Editable ed = filename.getText();
+                    try {
+                        writePositions(ed.toString());
+                        positions.clear();
+                    } catch (Exception ex) {
+                        Log.d("gpxTracker", ex.getMessage());
+                    }
                     dialog.dismiss();
-                    getActivity().finish(); // stop activity
                 }
             });
-            AlertDialog dialog = builder.create();
             dialog.show();
+        } catch (Exception ex) {
+            Log.d("gpxTracker", ex.getMessage());
         }
+    }
 
-        @Override
-        public void onPause() {
-            super.onPause();
-            locationManager.removeUpdates(this);
+    /**
+     * write file onto the external or internal storage gpx-route (.gpx)
+     * @throws Exception
+     */
+    private void writePositions(String filename) throws Exception {
+        File sdCard = Environment.getExternalStorageDirectory();
+        boolean sdCardExists = (sdCard.exists() && sdCard.canWrite());
+        File file;
+        if (sdCardExists) {
+            file = new File(sdCard.getAbsolutePath() + File.separator + filename);
+        } else {
+            file = new File(Environment.DIRECTORY_DOWNLOADS + File.separator + filename);
+            ;
         }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        // write file head
+        writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
+        writer.newLine();
+        writer.write("<gpx xmlns=\"http://www.topografix.com/GPX/1/1\" version=\"1.1\" creator=\"jteske\"");
+        writer.newLine();
+        writer.write("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
+        writer.newLine();
+        writer.write("xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1/gpx.xsd\">");
+        writer.newLine();
+        writer.write("<rte>");
+        // write positions
+        for (Location loc : positions) {
+            saveLocation(loc, writer);
+        }
+        // write file end
+        writer.write("</rte>");
+        writer.newLine();
+        writer.write("</gpx>");
+        writer.close();
+    }
 
-        @Override
-        public void onResume() {
-            super.onResume();
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4000, 0, this);
+    /**
+     * parses location into writer to generate a gpx track
+     * @param loc
+     * @param writer
+     */
+    private void saveLocation(Location loc, BufferedWriter writer) throws IOException {
+        writer.write("<rtept lat=\"" + loc.getLatitude() + "\" lon=\"" + loc.getLongitude() + "\">");
+        writer.newLine();
+        writer.write("<ele>" + loc.getAltitude() + "</ele>");
+        writer.newLine();
+        String zeit = gpxTimeFormat.format(new Date(loc.getTime()));
+        writer.write("<time>" + zeit + "</time>");
+        writer.newLine();
+        writer.write("</rtept>");
+        writer.newLine();
+    }
+
+    /**
+     *  prompt user to activate GPS
+     */
+    private void promptWarning(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        Resources res = getResources();
+        String text = res.getString(R.string.noGPS);
+        builder.setMessage(text);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+                getActivity().finish(); // stop activity
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        locationManager.removeUpdates(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
         }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4000, 0, this);
+    }
 
         public void onLocationChanged(Location loc) {
             double lon = loc.getLongitude();
@@ -260,13 +276,13 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
         }
 
         public void onProviderDisabled(String provider) {
-            // TODO Auto-generated method stub
+
         }
         public void onProviderEnabled(String provider) {
-            // TODO Auto-generated method stub
+
         }
         public void onStatusChanged(String provider, int status, Bundle extras) {
-            // TODO Auto-generated method stub
+
         }
 
     @Override
