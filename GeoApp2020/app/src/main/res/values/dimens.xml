@@ -15,9 +15,9 @@
     <dimen name="subtitle_margin_top">0dp</dimen>
     <dimen name="text_size">12dp</dimen>
     <dimen name="button_size">20dp</dimen>
-    <dimen name="img_height">300dp</dimen>
+    <dimen name="img_height">200dp</dimen>
 
     <!-- styling -->
-    <dimen name="text_border_size">4dp</dimen>
+    <dimen name="text_border_size">1dp</dimen>
 
 </resources>

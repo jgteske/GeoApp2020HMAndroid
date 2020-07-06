@@ -3,6 +3,8 @@ package com.example.geoapp2020.ui.gallery;
  * Creating a View to show an image after Clicking it
  *
  * Changing intent to open the Image in a new layout
+ *
+ * TODO: Funktion zum wischen von Bildern einbauen
  */
 
 import android.app.Activity;
