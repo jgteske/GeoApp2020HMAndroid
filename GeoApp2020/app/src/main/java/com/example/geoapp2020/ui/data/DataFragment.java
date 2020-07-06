@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -66,6 +67,7 @@ public class DataFragment extends Fragment {
                         // refresh the Fragment https://stackoverflow.com/questions/15262747/refresh-or-force-redraw-the-fragment
                         FragmentTransaction ftr = getFragmentManager().beginTransaction();
                         ftr.detach(DataFragment.this).attach(DataFragment.this).commit();
+                        Toast.makeText(getContext(), R.string.dialog_element_deleted, Toast.LENGTH_LONG).show();
                     }
                 });
                 builder.setNegativeButton(R.string.dialog_button_cancle, new DialogInterface.OnClickListener() {

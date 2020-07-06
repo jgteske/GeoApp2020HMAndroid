@@ -87,5 +87,6 @@
     <string name="dialog_zoom_on_me">Zoom auf aktuellen Standort!</string>
     <string name="dialog_no_list_items">Es sind keine Standorte gespeichert!</string>
     <string name="dialog_delete">Willst du das wirklich löschen?</string>
+    <string name="dialog_element_deleted">Element wurde gelöscht!</string>
 
 </resources>
