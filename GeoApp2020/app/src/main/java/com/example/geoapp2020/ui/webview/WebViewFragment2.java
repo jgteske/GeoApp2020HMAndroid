@@ -33,7 +33,7 @@ public class WebViewFragment2 extends Fragment {
     // Webview
         // Load the Webview for the webview
         final WebView webView = root.findViewById(R.id.webview);
-        webView.loadUrl("http://fk08srv01-2.geo.private.hm.edu/~teske/pages/oster_aufgabe4-6.html");
+        webView.loadUrl("http://fk08srv01-2.geo.private.hm.edu/~teske/pages/covid19-data.html");
 
         // Activate the Javascrip
         // source: https://stackoverflow.com/questions/29584597/android-studio-how-to-set-a-webview-loading-and-error-view
