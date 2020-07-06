@@ -89,4 +89,7 @@
     <string name="dialog_delete">Willst du das wirklich löschen?</string>
     <string name="dialog_element_deleted">Element wurde gelöscht!</string>
 
+    <!-- hints -->
+    <string name="hint_delete_location">Mit langem Drücken löschen!</string>
+
 </resources>

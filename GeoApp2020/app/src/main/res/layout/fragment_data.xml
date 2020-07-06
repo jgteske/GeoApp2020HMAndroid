@@ -69,5 +69,12 @@
             android:layout_width="match_parent"
             android:layout_height="400dp">
         </ListView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_view_location"
+            android:text="@string/hint_delete_location"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
