@@ -123,12 +123,7 @@ public class HomeFragment extends Fragment {
 
         // floating button
         FloatingActionButton fab = root.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_gps_tracker, null));
-            }
-        });
+        fab.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_gps_tracker, null));
 
 
         return root;

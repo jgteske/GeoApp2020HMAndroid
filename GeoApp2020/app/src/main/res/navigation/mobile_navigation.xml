@@ -78,7 +78,7 @@
     <fragment
         android:id="@+id/nav_gps_tracker"
         android:name="com.example.geoapp2020.ui.data.GnssGpsTrackerFragment"
-        android:label="@string/menu_locations"
+        android:label="@string/menu_tracker"
         tools:layout="@layout/fragment_tracker" />
 
     <fragment
