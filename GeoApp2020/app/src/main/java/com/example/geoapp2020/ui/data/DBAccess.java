@@ -200,7 +200,7 @@ public class DBAccess extends SQLiteOpenHelper {
      */
     public void deletDataset(Dataset ds) {
         try {
-            db.delete(table, "id = " + ds.id, null);
+            db.delete(table, "_id = " + ds.id, null);
         }
         catch(Exception ex) {
             Log.e("database", ex.getMessage());

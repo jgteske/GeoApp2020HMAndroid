@@ -86,5 +86,6 @@
     <string name="dialog_try_again">Bitte versuche es noch einmal!</string>
     <string name="dialog_zoom_on_me">Zoom auf aktuellen Standort!</string>
     <string name="dialog_no_list_items">Es sind keine Standorte gespeichert!</string>
+    <string name="dialog_delete">Willst du das wirklich löschen?</string>
 
 </resources>
