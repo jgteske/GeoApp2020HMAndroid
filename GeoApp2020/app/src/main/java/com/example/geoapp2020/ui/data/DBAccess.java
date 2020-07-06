@@ -124,6 +124,11 @@ public class DBAccess extends SQLiteOpenHelper {
     public long addDataset(Dataset dataset) {
         try {
             ContentValues data = createDataObject(dataset);
+
+            // checking if table exists
+            if(checkForTableExists(db, table) == false){
+                onCreate(db); // if Dataset can't be inserted tries to create the table - prevents a problem when access had not been granted before writing the Dataset
+            }
             return db.insert(table, null, data); // id is being created automatically
         }
         catch(Exception ex) {
@@ -239,5 +244,23 @@ public class DBAccess extends SQLiteOpenHelper {
             data.put("RecordingDate", ds.RecordingDate.getTime());
         }
         return data;
+    }
+
+    /**
+     * Checks if a table does exist in the Database
+     *
+     * https://readyandroid.wordpress.com/how-do-i-check-in-sqlite-whether-a-table-exists/
+     * @param db
+     * @param table
+     * @return
+     */
+    private boolean checkForTableExists(SQLiteDatabase db, String table) {
+        String sql = "SELECT name FROM sqlite_master WHERE type='table' AND name='"+table+"'";
+        Cursor mCursor = db.rawQuery(sql, null);
+        if (mCursor.getCount() > 0) {
+            return true;
+        }
+        mCursor.close();
+        return false;
     }
 }
