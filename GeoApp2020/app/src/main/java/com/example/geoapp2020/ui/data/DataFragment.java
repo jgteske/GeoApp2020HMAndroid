@@ -63,6 +63,9 @@ public class DataFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int id) {
                         dbAccess.deletDataset(object);
                         dialog.dismiss();
+                        // refresh the Fragment https://stackoverflow.com/questions/15262747/refresh-or-force-redraw-the-fragment
+                        FragmentTransaction ftr = getFragmentManager().beginTransaction();
+                        ftr.detach(DataFragment.this).attach(DataFragment.this).commit();
                     }
                 });
                 builder.setNegativeButton(R.string.dialog_button_cancle, new DialogInterface.OnClickListener() {
