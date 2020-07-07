@@ -40,18 +40,18 @@
     <string name="home_second">Home Second</string>
 
     <!-- HOME -->
-    <string name="button_aufgaben">Aufgaben</string>
-    <string name="button_gallery">Gallerie</string>
+    <string name="button_aufgaben">Website</string>
+    <string name="button_gallery">Bilder</string>
     <string name="button_map">Karte</string>
     <string name="button_tip">Reisetipp</string>
     <string name="button_alert">WARNUNG!</string>
 
     <string name="button_news_1">1</string>
-        <string name="newsText_1">Hier befindet sich der Text für die News 1</string>
+        <string name="newsText_1">Lockerung der allgemeinen Corona Einschränkungen. Ab jetzt können wieder kleiner Veranstaltungen gehalten und besucht werden!</string>
     <string name="button_news_2">2</string>
-        <string name="newsText_2">Hier befindet sich der Text für die 2ten News!</string>
+        <string name="newsText_2">Ernährungstipps, um sich fit zu halten. Tipp des Tages: mehr kochen!</string>
     <string name="button_news_3">3</string>
-        <string name="newsText_3">3ter News Text mit allen Neuigkeiten!</string>
+        <string name="newsText_3">Neue Erkenntnisse zum Virus findest du hier!</string>
 
 
     <!-- Webview -->
@@ -78,8 +78,8 @@
     <!-- Dialog Strings -->
     <string name="dialog_button_ok">Ok</string>
     <string name="dialog_button_cancle">Abbrechen</string>
-    <string name="dialog_tip">Tipps for Free hier!</string>
-    <string name="dialog_alert">Alert Text hier</string>
+    <string name="dialog_tip">Das beliebteste Reiseziel aktuell ist: Kanada</string>
+    <string name="dialog_alert">Keep your distance and wear a mask!</string>
 
     <string name="dialog_no_location">Standort konnte nicht bestimmt werden! Bitte GPS einschalten!</string>
     <string name="dialog_no_writingpermission">Keine Rechte auf externen Speicher zu scheiben!</string>
