@@ -6,24 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <!-- Title Area -->
-    <LinearLayout
-        android:id="@+id/title_area"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/title_margin_top"
-        android:layout_marginLeft="@dimen/general_margin"
-        android:layout_marginRight="@dimen/general_margin"
-        app:layout_constraintTop_toTopOf="parent">
-        <TextView
-            android:id="@+id/title_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/title_size"
-            android:textColor="@color/colorTitle"
-            android:text="@string/title_home" />
-    </LinearLayout>
-
     <!-- Content Area -->
     <LinearLayout
         android:id="@+id/title_image_layout"
@@ -35,7 +17,7 @@
             android:id="@+id/title_image"
             android:layout_width="match_parent"
             android:adjustViewBounds="true"
-            android:scaleType="center"
+            android:scaleType="centerCrop"
             android:layout_height="@dimen/img_height"
             android:layout_marginBottom="@dimen/general_margin"/>
     </LinearLayout>
