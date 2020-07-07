@@ -33,6 +33,11 @@
         android:layout_marginTop="@dimen/general_margin"
         app:layout_constraintTop_toBottomOf="@id/title_area"
         app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/germany_map"
+            android:scaleType="centerCrop"/>
         <FrameLayout
             android:id="@+id/touch_framelayout"
             android:layout_width="match_parent"

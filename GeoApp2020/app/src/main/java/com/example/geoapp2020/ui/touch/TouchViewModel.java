@@ -27,7 +27,7 @@ public class TouchViewModel extends View {
         super(c);
 
         // loads background image
-        this.setBackgroundResource(R.raw.image_01);
+        // moved to the fragment_touch.xml layout to crop the image to the Screen
 
         // loads point bitmap
         Resources resources = getResources();
