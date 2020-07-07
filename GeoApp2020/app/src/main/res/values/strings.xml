@@ -92,4 +92,16 @@
     <!-- hints -->
     <string name="hint_delete_location">Mit langem Drücken löschen!</string>
 
+    <!-- impress -->
+    <string name="impress_text">
+        \u00a9 Johann Teske\n\n
+        Kartographie und Geomedientechnik\n
+        GeoApp-Entwicklung (Geoinformatik III)\n
+        Hochschule für angewandte Wissenschaften München\n\n
+        Dozenten:\n
+        Prof. Dr. Franz Xaver Schütz\n
+        Prof. Dr. Rolf-Harald Klauer\n
+        Prof. Dr. Markus Oster\n\n
+        \u00a9 Photos by Johann Teske
+    </string>
 </resources>

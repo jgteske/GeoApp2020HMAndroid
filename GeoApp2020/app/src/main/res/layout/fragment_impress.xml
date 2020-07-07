@@ -32,9 +32,12 @@
         app:layout_constraintTop_toBottomOf="@id/title_area"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lückenfüller TEMP!"/>
+            android:layout_marginLeft="@dimen/general_margin"
+            android:layout_marginRight="@dimen/general_margin"
+            android:layout_marginTop="100dp"
+            android:text="@string/impress_text"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
