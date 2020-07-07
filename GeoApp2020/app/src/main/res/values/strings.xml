@@ -40,26 +40,23 @@
     <string name="home_second">Home Second</string>
 
     <!-- HOME -->
-    <string name="button_aufgaben">Website</string>
-    <string name="button_gallery">Bilder</string>
-    <string name="button_map">Karte</string>
+    <string name="button_aufgaben">Projekte</string>
+    <string name="button_gallery">Gallery</string>
+    <string name="button_map">Map</string>
     <string name="button_tip">Reisetipp</string>
-    <string name="button_alert">WARNUNG!</string>
+    <string name="button_alert">Warnung!</string>
 
     <string name="button_news_1">1</string>
-        <string name="newsText_1">Lockerung der allgemeinen Corona Einschränkungen. Ab jetzt können wieder kleiner Veranstaltungen gehalten und besucht werden!</string>
+        <string name="newsText_1">Lockerung der allgemeinen Corona Einschränkungen.\n Ab jetzt können wieder kleinere Veranstaltungen gehalten und besucht werden!</string>
     <string name="button_news_2">2</string>
-        <string name="newsText_2">Ernährungstipps, um sich fit zu halten. Tipp des Tages: mehr kochen!</string>
+        <string name="newsText_2">Ernährungstipps, um sich fit zu halten.\n Tipp des Tages: mehr kochen!</string>
     <string name="button_news_3">3</string>
         <string name="newsText_3">Neue Erkenntnisse zum Virus findest du hier!</string>
 
 
-    <!-- Webview -->
-    <string name="button_save_position">Speicher deinen Standort!</string>
-
-
     <!-- MapView -->
-    <string name="button_location_marker_map">Zeige meine Standorte auf der Karte</string>
+    <string name="button_save_position">Speichere deinen Standort!</string>
+    <string name="button_location_marker_map">Meine Standorte anzeigen</string>
 
 
     <!-- GnssGps Tracker -->
