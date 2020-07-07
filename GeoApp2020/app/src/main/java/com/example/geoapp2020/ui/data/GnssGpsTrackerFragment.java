@@ -55,6 +55,7 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
     private TextView showLon;   // show longitude
     private TextView showLat; // shot latitude
     private TextView showAlt; // show altitude
+    private TextView showSpeed; // show speed
 
     private LocationManager locationManager;
 
@@ -107,6 +108,7 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
         showLat = (TextView) root.findViewById(R.id.text_view_latitude);
         showLon = (TextView) root.findViewById(R.id.text_view_longitude);
         showAlt = (TextView) root.findViewById(R.id.text_view_altitude);
+        showSpeed = (TextView) root.findViewById(R.id.text_view_speed);
         gpxTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
 
@@ -289,6 +291,10 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
             }
             if(collectData) {
                 positions.add(loc);
+            }
+            if(loc.hasSpeed()) {
+                showSpeed.setText(String.valueOf(loc.getSpeed()) + " m/s");
+
             }
         }
 

@@ -73,6 +73,7 @@
     <string name="altitude">Höhe</string>
     <string name="longitude">geograf. Länge</string>
     <string name="latitude">geograf. Breite</string>
+    <string name="speed">Geschwindigkeit</string>
 
 
     <!-- Dialog Strings -->
