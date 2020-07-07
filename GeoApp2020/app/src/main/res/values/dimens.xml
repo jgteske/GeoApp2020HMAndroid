@@ -8,6 +8,7 @@
 
     <!-- general settings -->
     <dimen name="general_margin">16dp</dimen>
+    <dimen name="general_margin_half">8dp</dimen>
     <dimen name="general_padding">16dp</dimen>
     <dimen name="title_size">20dp</dimen>
     <dimen name="title_margin_top">16dp</dimen>
