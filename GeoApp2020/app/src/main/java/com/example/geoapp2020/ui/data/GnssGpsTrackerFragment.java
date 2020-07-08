@@ -234,8 +234,8 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
         writer.newLine();
         writer.write("\t<ele>" + loc.getAltitude() + "</ele>");
         writer.newLine();
-        String zeit = gpxTimeFormat.format(new Date(loc.getTime()));
-        writer.write("\t<time>" + zeit + "</time>");
+        String time = gpxTimeFormat.format(new Date(loc.getTime()));
+        writer.write("\t<time>" + time + "</time>");
         writer.newLine();
         writer.write("\t</rtept>");
         writer.newLine();
