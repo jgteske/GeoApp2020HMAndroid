@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#006c78</color>
+    <color name="colorPrimaryDark">#00434A</color>
+    <color name="colorSecondary">#4cada2</color>
+    <color name="colorAccent">#C7DBE6</color>
 
     <!-- general colors -->
-    <color name="colorTitle">#FF0000</color>
-    <color name="colorSubtitle">#22CF00</color>
+    <color name="colorTitle">@color/colorPrimary</color>
+    <color name="colorSubtitle">@color/colorSecondary</color>
 
     <!-- styling -->
     <color name="text_border_color">#000000</color>
@@ -16,8 +17,11 @@
     <color name="icon_danger">#FF0000</color>
 
     <!-- Button Colors-->
-    <color name="button_main">#919191</color>
+    <color name="button_main">@color/colorAccent</color>
     <color name="button_highlight">#FFFFFF</color>
-    <color name="button_active">#C8966FFF</color>
+    <color name="button_active">@color/colorSecondary</color>
+
+    <!-- Background Colors-->
+    <color name="background_light">#FFFFFF</color>
 
 </resources>

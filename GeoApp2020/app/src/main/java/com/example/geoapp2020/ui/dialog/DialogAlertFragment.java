@@ -1,5 +1,9 @@
 package com.example.geoapp2020.ui.dialog;
-// Based on https://developer.android.com/reference/android/app/DialogFragment
+/**
+ * Based on https://developer.android.com/reference/android/app/DialogFragment
+ *
+ * Creates a DialogFragment that is displayed as an Alert
+ */
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -27,14 +31,14 @@ public class DialogAlertFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setIcon(R.drawable.ic_alert)
                 .setTitle(title)
-                .setPositiveButton(R.string.button_ok,
+                .setPositiveButton(R.string.dialog_button_ok,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 dialog.dismiss();
                             }
                         }
                 )
-                .setNegativeButton(R.string.button_cancle,
+                .setNegativeButton(R.string.dialog_button_cancle,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 dialog.dismiss();

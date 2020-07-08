@@ -46,12 +46,16 @@
         android:name="com.example.geoapp2020.ui.webview.WebViewFragment"
         android:label="@string/menu_webview"
         tools:layout="@layout/fragment_webview" />
-
     <fragment
-        android:id="@+id/nav_draw"
-        android:name="com.example.geoapp2020.ui.draw.DrawFragment"
-        android:label="@string/menu_draw"
-        tools:layout="@layout/fragment_draw" />
+        android:id="@+id/nav_webview1"
+        android:name="com.example.geoapp2020.ui.webview.WebViewFragment1"
+        android:label="@string/menu_webview"
+        tools:layout="@layout/fragment_webview" />
+    <fragment
+        android:id="@+id/nav_webview2"
+        android:name="com.example.geoapp2020.ui.webview.WebViewFragment2"
+        android:label="@string/menu_webview"
+        tools:layout="@layout/fragment_webview" />
 
     <fragment
         android:id="@+id/nav_touch"
@@ -64,4 +68,22 @@
         android:name="com.example.geoapp2020.ui.mapview.MapViewFragment"
         android:label="@string/menu_map"
         tools:layout="@layout/fragment_mapview" />
+
+    <fragment
+        android:id="@+id/nav_locations"
+        android:name="com.example.geoapp2020.ui.data.DataFragment"
+        android:label="@string/menu_locations"
+        tools:layout="@layout/fragment_data" />
+
+    <fragment
+        android:id="@+id/nav_gps_tracker"
+        android:name="com.example.geoapp2020.ui.data.GnssGpsTrackerFragment"
+        android:label="@string/menu_tracker"
+        tools:layout="@layout/fragment_tracker" />
+
+    <fragment
+        android:id="@+id/nav_impress"
+        android:name="com.example.geoapp2020.ui.impress.ImpressFragment"
+        android:label="@string/menu_impress"
+        tools:layout="@layout/fragment_impress" />
 </navigation>

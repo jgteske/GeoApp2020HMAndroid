@@ -13,25 +13,67 @@
             android:icon="@drawable/ic_menu_webview"
             android:title="@string/menu_webview"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_webview1"
+            android:icon="@drawable/ic_menu_webview"
+            android:title="@string/menu_webview_1"/>
         <item
-            android:id="@+id/nav_draw"
-            android:icon="@drawable/ic_menu_draw"
-            android:title="@string/menu_draw" />
-        <item
-            android:id="@+id/nav_touch"
-            android:icon="@drawable/ic_menu_touch"
-            android:title="@string/menu_touch" />
-        <item
-            android:id="@+id/nav_media"
-            android:icon="@drawable/ic_menu_media"
-            android:title="@string/menu_media" />
-        <item
-            android:id="@+id/nav_map"
-            android:icon="@drawable/ic_menu_map"
-            android:title="@string/menu_map" />
+            android:id="@+id/nav_webview2"
+            android:icon="@drawable/ic_facts_numbers"
+            android:title="@string/menu_webview_2"/>
 
     </group>
+
+    <item
+        android:title="@string/menu_header1">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_map"
+                    android:icon="@drawable/ic_menu_map"
+                    android:title="@string/menu_map" />
+                <item
+                    android:id="@+id/nav_locations"
+                    android:icon="@drawable/ic_flag"
+                    android:title="@string/menu_locations" />
+                <item
+                    android:id="@+id/nav_gps_tracker"
+                    android:icon="@drawable/ic_tracker"
+                    android:title="@string/title_tracker" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:title="@string/menu_header2">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_gallery"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="@string/menu_gallery" />
+                <item
+                    android:id="@+id/nav_touch"
+                    android:icon="@drawable/ic_menu_touch"
+                    android:title="@string/menu_touch" />
+                <item
+                    android:id="@+id/nav_media"
+                    android:icon="@drawable/ic_menu_media"
+                    android:title="@string/menu_media" />
+
+            </group>
+        </menu>
+    </item>
+    <item
+        android:title="@string/menu_header3">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_impress"
+                    android:icon="@drawable/ic_info"
+                    android:title="@string/menu_impress" />
+            </group>
+        </menu>
+    </item>
+
 </menu>

@@ -1,7 +1,6 @@
 package com.example.geoapp2020.ui.webview;
 /**
- * WebView model to display the Homepage of all University projects 2020 on the server
- *
+ * WebView model to display all cases/deaths of Corona in the world - 2020
  */
 
 import android.os.Bundle;
@@ -20,10 +19,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.geoapp2020.R;
 
-public class WebViewFragment extends Fragment {
+public class WebViewFragment1 extends Fragment {
 
     private WebViewModel webViewModel;
-    private WebView webView;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -33,8 +32,8 @@ public class WebViewFragment extends Fragment {
 
     // Webview
         // Load the Webview for the webview
-        webView = root.findViewById(R.id.webview);
-        webView.loadUrl("http://fk08srv01-2.geo.private.hm.edu/~teske/");
+        final WebView webView = root.findViewById(R.id.webview);
+        webView.loadUrl("http://fk08srv01-2.geo.private.hm.edu/~teske/pages/covid19-map.html");
 
         // Activate the Javascrip
         // source: https://stackoverflow.com/questions/29584597/android-studio-how-to-set-a-webview-loading-and-error-view

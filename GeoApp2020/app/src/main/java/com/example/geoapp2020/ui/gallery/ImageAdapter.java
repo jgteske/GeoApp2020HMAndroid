@@ -24,15 +24,40 @@ public class ImageAdapter  extends BaseAdapter {
         context = c;
     }
 
+    /**
+     * Returns imageArray length
+     *
+     * @return
+     */
     @Override
     public int getCount() { return bilderIDs.length; }
 
+    /**
+     * Returns Item/Image
+     *
+     * @param position
+     * @return
+     */
     @Override
     public Object getItem(int position) { return bilderIDs[position]; }
 
+    /**
+     * Returns ItemId
+     *
+     * @param position
+     * @return
+     */
     @Override
     public long getItemId(int position) { return 0; }
 
+    /**
+     * Creating an ImageView for every image, to load into the GridView
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView iv;

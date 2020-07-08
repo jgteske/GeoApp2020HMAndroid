@@ -37,13 +37,32 @@
             android:id="@+id/map"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-        <ImageButton
-            android:id="@+id/button_location"
-            android:src="@drawable/ic_menu_mylocation"
-            android:background="@android:color/transparent"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/map"
-            android:layout_margin="@dimen/general_margin"/>
+            android:orientation="vertical"
+            android:layout_alignTop="@id/map"
+            android:layout_alignRight="@id/map"
+            android:layout_margin="@dimen/general_margin"
+            android:gravity="right">
+            <ImageButton
+                android:id="@+id/button_location"
+                android:src="@drawable/ic_menu_mylocation"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/button_save_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size"
+                android:text="@string/button_save_position"/>
+            <Switch
+                android:id="@+id/button_switch_locations"
+                android:text="@string/button_location_marker_map"
+                android:textSize="@dimen/text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

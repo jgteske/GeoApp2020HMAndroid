@@ -7,43 +7,99 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+
     <!-- menu names and titles -->
     <string name="menu_home">Home</string>
         <string name="title_home">Covid19</string>
         <string name="subtitle_1">News</string>
-    <string name="menu_gallery">Gallery</string>
-        <string name="title_gallery">Gallerie</string>
-    <string name="menu_media">Media</string>
-        <string name="title_media">Medientitel!</string>
-    <string name="menu_webview">Webview</string>
+    <string name="menu_webview">Projekte</string>
         <string name="title_webview">Projektseite von Johann Teske</string>
-    <string name="menu_draw">Draw Graphics</string>
-    <string name="menu_touch">Touchevent</string>
-        <string name="title_touch">ToucheventApp</string>
-    <string name="menu_map">Map</string>
-        <string name="title_mapview">Mapview von Johann</string>
+    <string name="menu_webview_1">Corona Karte</string>
+    <string name="menu_webview_2">Corona Daten</string>
+    <!-- Submenu 1 -->
+    <string name="menu_header1">Wo steh ich?</string>
+        <string name="menu_map">Map</string>
+            <string name="title_mapview">Mapview von Johann</string>
+        <string name="menu_locations">Meine Standorte</string>
+            <string name="title_locations">Meine Standorte</string>
+        <string name="menu_tracker">GPS-Tracker</string>
+            <string name="title_tracker">GPS-Tracker</string>
+    <!-- Submenu 2-->
+    <string name="menu_header2">Entspannungsbereich</string>
+        <string name="menu_gallery">Gallery</string>
+            <string name="title_gallery">Gallerie</string>
+        <string name="menu_touch">ZEN-trum</string>
+            <string name="title_touch">Verschiebe das Infektionszentrum</string>
+        <string name="menu_media">Media</string>
+            <string name="title_media">Entspannungsvideos</string>
+    <!-- Impress Menu -->
+    <string name="menu_header3">Infos</string>
+        <string name="menu_impress">Impressum</string>
+            <string name="title_impress">Impressum zur GeoApp2020</string>
 
     <string name="home_second">Home Second</string>
 
     <!-- HOME -->
-    <string name="button_aufgaben">Aufgaben</string>
-    <string name="button_gallery">Gallerie</string>
-    <string name="button_map">Karte</string>
+    <string name="button_aufgaben">Projekte</string>
+    <string name="button_gallery">Gallery</string>
+    <string name="button_map">Map</string>
     <string name="button_tip">Reisetipp</string>
-    <string name="button_alert">WARNUNG!</string>
+    <string name="button_alert">Warnung!</string>
 
     <string name="button_news_1">1</string>
-        <string name="newsText_1">Hier befindet sich der Text für die News 1</string>
+        <string name="newsText_1">Lockerung der allgemeinen Corona Einschränkungen.\nAb jetzt können wieder kleinere Veranstaltungen gehalten und besucht werden!</string>
     <string name="button_news_2">2</string>
-        <string name="newsText_2">Hier befindet sich der Text für die 2ten News!</string>
+        <string name="newsText_2">Ernährungstipps, um sich fit zu halten.\nTipp des Tages: mehr kochen!</string>
     <string name="button_news_3">3</string>
-        <string name="newsText_3">3ter News Text mit allen Neuigkeiten!</string>
+        <string name="newsText_3">Neue Erkenntnisse zum Virus findest du hier!</string>
+
+
+    <!-- MapView -->
+    <string name="button_save_position">Speichere deinen Standort!</string>
+    <string name="button_location_marker_map">Meine Standorte anzeigen</string>
+
+
+    <!-- GnssGps Tracker -->
+    <string name="file_saved">Datei wurde gespeichert!</string>
+    <string name="start">Start</string>
+    <string name="stop">Stopp</string>
+    <string name="save">Speichern</string>
+    <string name="saveDialogTitle">Speichern</string>
+    <string name="InternalSave">intern</string>
+    <string name="ExternSave">SD-Karte</string>
+    <string name="altitude">Höhe</string>
+    <string name="longitude">geograf. Länge</string>
+    <string name="latitude">geograf. Breite</string>
+    <string name="speed">Geschwindigkeit</string>
 
 
     <!-- Dialog Strings -->
-    <string name="button_ok">Ok</string>
-    <string name="button_cancle">Abbrechen</string>
-    <string name="dialog_tip">Tipps for Free hier!</string>
-    <string name="dialog_alert">Alert Text hier</string>
+    <string name="dialog_button_ok">Ok</string>
+    <string name="dialog_button_cancle">Abbrechen</string>
+    <string name="dialog_tip">Das beliebteste Reiseziel aktuell ist: Kanada</string>
+    <string name="dialog_alert">Keep your distance and wear a mask!</string>
 
+    <string name="dialog_no_location">Standort konnte nicht bestimmt werden! Bitte GPS einschalten!</string>
+    <string name="dialog_no_writingpermission">Keine Rechte auf externen Speicher zu scheiben!</string>
+    <string name="dialog_try_again">Bitte versuche es noch einmal!</string>
+    <string name="dialog_zoom_on_me">Zoom auf aktuellen Standort!</string>
+    <string name="dialog_no_list_items">Es sind keine Standorte gespeichert!</string>
+    <string name="dialog_delete">Willst du das wirklich löschen?</string>
+    <string name="dialog_element_deleted">Element wurde gelöscht!</string>
+
+    <!-- hints -->
+    <string name="hint_delete_location">Mit langem Drücken löschen!</string>
+
+    <!-- impress -->
+    <string name="impress_text">
+        \u00a9 Johann Teske\n\n
+        Kartographie und Geomedientechnik\n
+        GeoApp-Entwicklung (Geoinformatik III)\n
+        Hochschule für angewandte Wissenschaften München\n\n
+        Dozenten:\n
+        Prof. Dr. Franz Xaver Schütz\n
+        Prof. Dr. Rolf-Harald Klauer\n
+        Prof. Dr. Markus Oster\n\n
+        \u00a9 Photos and Videos by Johann Teske
+    </string>
 </resources>

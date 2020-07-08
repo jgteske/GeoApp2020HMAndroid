@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.media.MediaFragment">
+
+    <!-- Title Area -->
+    <LinearLayout
+        android:id="@+id/title_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title_margin_top"
+        android:layout_marginLeft="@dimen/general_margin"
+        android:layout_marginRight="@dimen/general_margin"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/title_media"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_size"
+            android:textColor="@color/colorTitle"
+            android:text="@string/title_touch" />
+    </LinearLayout>
+
+    <!-- Content Area -->
+    <RelativeLayout
+        android:id="@+id/relativelayout_touch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/general_margin"
+        app:layout_constraintTop_toBottomOf="@id/title_area"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/germany_map"
+            android:scaleType="centerCrop"/>
+        <FrameLayout
+            android:id="@+id/touch_framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

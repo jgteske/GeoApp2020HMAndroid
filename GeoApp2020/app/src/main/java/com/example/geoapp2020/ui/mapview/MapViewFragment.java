@@ -3,11 +3,16 @@ package com.example.geoapp2020.ui.mapview;
 // edited, adapted and changed by jteske
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,7 +20,10 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +32,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.geoapp2020.R;
+import com.example.geoapp2020.ui.data.DBAccess;
+import com.example.geoapp2020.ui.data.DataManager;
+import com.example.geoapp2020.ui.data.Dataset;
 
 
 import org.osmdroid.api.IMapController;
@@ -32,14 +43,19 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.CopyrightOverlay;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.MinimapOverlay;
+import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.IMyLocationConsumer;
 import org.osmdroid.views.overlay.mylocation.IMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
+import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class MapViewFragment extends Fragment {
@@ -56,6 +72,10 @@ public class MapViewFragment extends Fragment {
     private MyLocationProvider myLocationProvider;
     private Location currentLocation;
 
+    private DBAccess dbAccess;
+    ArrayList<OverlayItem> overlayItemArray = new ArrayList<OverlayItem>();
+    ItemizedIconOverlay<OverlayItem> itemizedIconOverlay;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +83,7 @@ public class MapViewFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_mapview, container, false);
 
         //handle permissions first, before map is created. not depicted here
-        Context ctx = getContext();  // this provides the context of the application!!! IMPORTANT for other functions
+        final Context ctx = getContext();  // this provides the context of the application!!! IMPORTANT for other functions
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
 
@@ -108,9 +128,12 @@ public class MapViewFragment extends Fragment {
         mMapView.getOverlays().add(this.minimapOverlay);
 
 
-        ////////////////////////////////////////////// Location Manager //////////////////////////////////////////////////////////////////
-        // Location Marker
-        this.locationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(ctx), mMapView);
+        /**
+         * ////////////////////////////////////////////// Location Manager //////////////////////////////////////////////////////////////////
+         */
+        GpsMyLocationProvider gpsMyLocationProvider = new GpsMyLocationProvider(ctx);
+        gpsMyLocationProvider.setLocationUpdateMinTime(2000); // Setting GPS Update intervall to ...ms
+        this.locationOverlay = new MyLocationNewOverlay(gpsMyLocationProvider, mMapView);
         this.locationOverlay.enableMyLocation();
         this.locationOverlay.disableFollowLocation();
         this.locationOverlay.isDrawAccuracyEnabled();
@@ -121,7 +144,7 @@ public class MapViewFragment extends Fragment {
 
         mMapView.getOverlays().add(this.locationOverlay);
 
-        //Center to my Postition on Button Click
+        // Center to my current position on Button Click
         // source: https://github.com/osmdroid/osmdroid/blob/19053d1435e8fa4e58b04960b23b0769e99adb66/OpenStreetMapViewer/src/main/java/org/osmdroid/samplefragments/events/SampleAnimatedZoomToLocation.java
         //
         // Location Provider
@@ -141,9 +164,9 @@ public class MapViewFragment extends Fragment {
             public void onClick(View v) {
                 // Checking if currentLocation is set, otherwise app will crash when location is not set and you press the LccationButton - jteske
                 if (currentLocation == null){
-                    Toast.makeText(getActivity(), "Standort noch nicht bestimmt!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.dialog_no_location, Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(getActivity(), "Zoom auf aktuellen Standort!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.dialog_zoom_on_me, Toast.LENGTH_LONG).show();
                     GeoPoint myPosition = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
                     mMapView.getController().animateTo(myPosition, 14.0, (long) 2000); // animateTo: 1.Location, 2.Zoomlevel, 3.animationspeed in ms (jteske)
                 }
@@ -151,11 +174,90 @@ public class MapViewFragment extends Fragment {
         });
         ////////////////////////////////////////////// End of Location Manager //////////////////////////////////////////////////////////////////
 
+        /**
+         * Button to save your current Location in a Database
+         */
+        Button button = (Button) root.findViewById(R.id.button_save_position);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentLocation != null){
+                    // provides the Activity Context, Latitude nad Longitude of the current location to put into an sqlite-database - jteske
+                    DataManager dm = new DataManager(ctx, currentLocation.getLatitude(), currentLocation.getLongitude());
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                    Resources res = getResources();
+                    String text = res.getString(R.string.dialog_no_location);
+                    text += "\n\n" + res.getString(R.string.dialog_try_again);
+                    builder.setMessage(text);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                            requestPermissionsIfNecessary(new String[] {
+                                    Manifest.permission.ACCESS_FINE_LOCATION
+                            });
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    return;
+                }
+            }
+        });
+
         requestPermissionsIfNecessary(new String[] {
                 // WRITE_EXTERNAL_STORAGE is required in order to show the map
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_FINE_LOCATION
         });
+
+
+        // Toggle button to show your currently saved positions on the map
+        Switch switchButton = (Switch) root.findViewById(R.id.button_switch_locations);
+        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // get location Data from database
+                    dbAccess = new DBAccess(getContext(), "database_locations.sqlite");
+                    final ArrayList<Dataset> locations = (ArrayList<Dataset>) dbAccess.readDataset();
+
+                    // iterating through all locations and create a marker for each one of it
+                    int arr_size = locations.size();
+
+                    // getting multiple markers into one overlay-item http://android-er.blogspot.com/2012/05/create-multi-marker-openstreetmap-for.html
+                    for (int i=0; i<arr_size; i++){
+
+                        // Write current data into a dataset
+                        Dataset data = locations.get(i);
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+                        String stringDate = formatter.format(data.RecordingDate);
+                        // adding data into the overlayItemArray
+                        overlayItemArray.add(new OverlayItem(
+                                "1", data.LocationName, stringDate, new GeoPoint( data.LocationLatitude, data.LocationLongitude)));
+                    }
+
+                    // create Drawable icon for the itemizedIconOverlay - source http://spearhend.blogspot.com/2012/04/load-android-drawable-from-xml.html
+                    // loads the oberlayItemArray with the personalized Icon
+                    try {
+                        itemizedIconOverlay = new ItemizedIconOverlay<OverlayItem>(
+                                //getContext(), overlayItemArray, null); // simple for with the standard icon
+                                overlayItemArray, Drawable.createFromXml(getResources(), getResources().getXml(R.drawable.ic_added_location)), null, ctx); // https://osmdroid.github.io/osmdroid/javadocs/osmdroid-android/debug/index.html?org/osmdroid/views/overlay/Marker.html
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (XmlPullParserException e) {
+                        e.printStackTrace();
+                    }
+                    mMapView.getOverlays().add(itemizedIconOverlay);
+
+                } else {
+                        mMapView.getOverlays().remove(itemizedIconOverlay);
+                        mMapView.invalidate();
+                }
+            }
+        });
+
 
         return root;
     }
@@ -169,6 +271,16 @@ public class MapViewFragment extends Fragment {
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
         mMapView.onResume(); //needed for compass, my location overlays, v6.0.0 and up
+
+        // reload the location manager after permission has been granted
+        myLocationProvider.startLocationProvider(new IMyLocationConsumer() {
+            @Override
+            public void onLocationChanged(Location location, IMyLocationProvider source) {
+                //myLocationProvider.stopLocationProvider();
+                currentLocation = location;
+
+            }
+        });
     }
 
     @Override
@@ -195,6 +307,11 @@ public class MapViewFragment extends Fragment {
         }
     }
 
+    /**
+     * Requests permissions, if not set
+     *
+     * @param permissions
+     */
     private void requestPermissionsIfNecessary(String[] permissions) {
         ArrayList<String> permissionsToRequest = new ArrayList<>();
         for (String permission : permissions) {
