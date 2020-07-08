@@ -49,7 +49,7 @@
     <string name="button_news_1">1</string>
         <string name="newsText_1">Lockerung der allgemeinen Corona Einschränkungen.\nAb jetzt können wieder kleinere Veranstaltungen gehalten und besucht werden!</string>
     <string name="button_news_2">2</string>
-        <string name="newsText_2">Ernährungstipps, um sich fit zu halten.\n Tipp des Tages: mehr kochen!</string>
+        <string name="newsText_2">Ernährungstipps, um sich fit zu halten.\nTipp des Tages: mehr kochen!</string>
     <string name="button_news_3">3</string>
         <string name="newsText_3">Neue Erkenntnisse zum Virus findest du hier!</string>
 
