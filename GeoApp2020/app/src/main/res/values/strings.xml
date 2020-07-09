@@ -16,20 +16,20 @@
     <string name="menu_webview_1">Corona - Karte</string>
     <string name="menu_webview_2">Corona - Daten</string>
     <!-- Submenu 1 -->
-    <string name="menu_header1">Wo steh ich?</string>
-        <string name="menu_map">Map</string>
+    <string name="menu_header1">Wo stehe ich?</string>
+        <string name="menu_map">Karte</string>
             <string name="title_mapview">Standortkarte</string>
         <string name="menu_locations">Meine Standorte</string>
             <string name="title_locations">Meine Standorte</string>
         <string name="menu_tracker">GPS-Tracker</string>
-            <string name="title_tracker">GPS-Tracker</string>
+            <string name="title_tracker">Tracke deine Route</string>
     <!-- Submenu 2-->
     <string name="menu_header2">Entspannungsbereich</string>
         <string name="menu_gallery">Gallery</string>
-            <string name="title_gallery">Gallerie</string>
+            <string name="title_gallery">Bilder unterschiedlicher Standorte</string>
         <string name="menu_touch">ZEN-trum</string>
             <string name="title_touch">Verschiebe das Infektionszentrum</string>
-        <string name="menu_media">Media</string>
+        <string name="menu_media">Medien</string>
             <string name="title_media">Entspannungsvideos</string>
     <!-- Impress Menu -->
     <string name="menu_header3">Infos</string>
@@ -41,7 +41,7 @@
     <!-- HOME -->
     <string name="button_aufgaben">Projekte</string>
     <string name="button_gallery">Gallery</string>
-    <string name="button_map">Map</string>
+    <string name="button_map">Karte</string>
     <string name="button_tip">Reisetipp</string>
     <string name="button_alert">Warnung!</string>
 
