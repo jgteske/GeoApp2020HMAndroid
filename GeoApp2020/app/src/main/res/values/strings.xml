@@ -13,13 +13,12 @@
         <string name="title_home">Covid19</string>
         <string name="subtitle_1">News</string>
     <string name="menu_webview">Projekte</string>
-        <string name="title_webview">Projektseite von Johann Teske</string>
-    <string name="menu_webview_1">Corona Karte</string>
-    <string name="menu_webview_2">Corona Daten</string>
+    <string name="menu_webview_1">Corona - Karte</string>
+    <string name="menu_webview_2">Corona - Daten</string>
     <!-- Submenu 1 -->
     <string name="menu_header1">Wo steh ich?</string>
         <string name="menu_map">Map</string>
-            <string name="title_mapview">Mapview von Johann</string>
+            <string name="title_mapview">Standortkarte</string>
         <string name="menu_locations">Meine Standorte</string>
             <string name="title_locations">Meine Standorte</string>
         <string name="menu_tracker">GPS-Tracker</string>
@@ -71,6 +70,8 @@
     <string name="longitude">geograf. Länge</string>
     <string name="latitude">geograf. Breite</string>
     <string name="speed">Geschwindigkeit</string>
+    <string name="show_track">Zeige den Track auf der Karte</string>
+    <string name="dependency_display_track">Wollen Sie den Track auf der Karte anzeigen, müssen Sie diesen zuerst speichern. \nNachdem der Track angezeit wurde, kann er nicht mehr gespeichert werden!</string>
 
 
     <!-- Dialog Strings -->

@@ -35,14 +35,17 @@ import com.example.geoapp2020.R;
 import com.example.geoapp2020.ui.data.DBAccess;
 import com.example.geoapp2020.ui.data.DataManager;
 import com.example.geoapp2020.ui.data.Dataset;
+import com.example.geoapp2020.ui.data.GnssGpsTrackerFragment;
 
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.kml.KmlDocument;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.CopyrightOverlay;
+import org.osmdroid.views.overlay.FolderOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.MinimapOverlay;
@@ -54,6 +57,7 @@ import org.osmdroid.views.overlay.mylocation.IMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -257,6 +261,15 @@ public class MapViewFragment extends Fragment {
                 }
             }
         });
+
+        /**
+         * USED THE OSMBonuspack from: https://github.com/MKergall/osmbonuspack
+         *
+         * https://github.com/MKergall/osmbonuspack/wiki/Tutorial_4
+         *
+         * Loading a gpx-Track into the osm-Map
+         */
+            GnssGpsTrackerFragment.drawRoute(ctx, mMapView);
 
 
         return root;

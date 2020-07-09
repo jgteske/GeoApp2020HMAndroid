@@ -20,6 +20,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,11 +32,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.geoapp2020.R;
+
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Polyline;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -64,9 +71,13 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
     private Button startButton;
     private Button stopButton;
     private Button saveButton;
+    private Button trackButton;
 
     private boolean collectData;
-    private List<Location> positions;
+    private static List<Location> positions;
+
+    int curCheckPosition = 0;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -80,6 +91,14 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_FINE_LOCATION
         });
+/*
+        // checks if there is a save state
+        if (savedInstanceState != null) {
+            // Restore last state for checked position.
+            curCheckPosition = savedInstanceState.getInt("curChoice", 0);
+            positions = savedInstanceState.getParcelableArrayList("savePositions");
+        }
+*/
 
 
         locationManager = (LocationManager)
@@ -103,6 +122,11 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
         saveButton.setOnClickListener(this);
         saveButton.setEnabled(false);
         collectData = false;
+        // show track Button
+        trackButton = (Button) root.findViewById(R.id.button4);
+        trackButton.setOnClickListener(this);
+        trackButton.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_map, null));
+        trackButton.setEnabled(false);
 
         positions = new ArrayList<Location>();
         showLat = (TextView) root.findViewById(R.id.text_view_latitude);
@@ -115,6 +139,13 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
         return root;
     }
 
+/*    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("curChoice", curCheckPosition);
+        outState.putParcelableArrayList("savePositions", (ArrayList<? extends Parcelable>) positions);
+    }
+*/
     /**
      * manages on click function for buttons
      */
@@ -124,6 +155,7 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
                 startButton.setEnabled(false);
                 stopButton.setEnabled(true);
                 saveButton.setEnabled(false);
+                trackButton.setEnabled(false);
                 collectData = true;
             }else{
                 // request permission if necessary
@@ -137,13 +169,21 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
             saveButton.setEnabled(true);
+            trackButton.setEnabled(false);
             collectData = false;
         } else if (v == saveButton) {
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
             saveButton.setEnabled(false);
+            trackButton.setEnabled(true);
             collectData = false;
             saveCollectedData(getContext());
+        } else if (v == trackButton) {
+            startButton.setEnabled(true);
+            stopButton.setEnabled(false);
+            saveButton.setEnabled(false);
+            trackButton.setEnabled(false);
+            collectData = false;
         }
     }
 
@@ -258,6 +298,55 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    public static void drawRoute(Context context, MapView map) {
+        if (positions != null) {
+            List<Location> list = positions;
+            Polyline drawTrack = getPolyline(context, map, positions);
+            map.getOverlayManager().add(drawTrack);
+        }
+    }
+    // https://www.programcreek.com/java-api-examples/?api=org.osmdroid.bonuspack.overlays.Polyline
+    public static Polyline getPolyline(Context context, MapView map, List<Location> positions) {
+
+        Polyline track = (Polyline) new Polyline();
+
+        track.setSubDescription(Polyline.class.getCanonicalName());
+        track.setWidth(10f);
+        track.setColor(ContextCompat.getColor(context, R.color.track_color));
+
+        List<GeoPoint> geoPoints = new ArrayList<>();
+
+        for (Location value : positions) {
+            GeoPoint loc = new GeoPoint(value.getLatitude(), value.getLongitude());
+            geoPoints.add(loc);
+        }
+
+        track.setPoints(geoPoints);
+        track.setGeodesic(true);
+
+        return track;
+    }
+
+/*    public static void showTrack(Context context, MapView map) {
+
+        Polyline track = new Polyline(context);
+        line.setSubDescription(Polyline.class.getCanonicalName());
+        line.setWidth(15f);
+        line.setColor(ContextCompat.getColor(context, R.color.orange_partially_transparent));
+
+        ArrayList<GeoPoint> track = new ArrayList<>();
+
+        for (Location value : positions) {
+            GeoPoint geoPoint = new GeoPoint(value.getLatitude(), value.getLongitude());
+            track.add(geoPoint);
+        }
+
+
+
+        map.getOverlay().add(roadOverlay);
+        map.invalidate();
+    }*/
 
     @Override
     public void onPause() {

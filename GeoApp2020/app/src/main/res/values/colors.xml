@@ -24,4 +24,7 @@
     <!-- Background Colors-->
     <color name="background_light">#FFFFFF</color>
 
+    <!-- Track Color -->
+    <color name="track_color">#001EFF</color>
+
 </resources>

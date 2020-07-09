@@ -115,6 +115,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></Button>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_margin">
+                <Button
+                    android:text="@string/show_track"
+                    android:id="@+id/button4"
+                    android:layout_width="wrap_content"
+                    android:drawableLeft="@drawable/ic_menu_map"
+                    android:layout_height="wrap_content"></Button>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_margin">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dependency_display_track"/>
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
