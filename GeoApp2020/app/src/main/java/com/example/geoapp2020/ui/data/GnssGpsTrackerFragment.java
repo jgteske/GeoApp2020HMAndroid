@@ -208,7 +208,7 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
                     try {
                         writePositions(ed.toString());
                         positions.clear();
-                        Toast.makeText(context, R.string.file_saved, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(context, R.string.file_saved, Toast.LENGTH_LONG).show();
                     } catch (Exception ex) {
                         Log.d("gpxTracker", ex.getMessage());
                     }
@@ -262,6 +262,9 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
         writer.newLine();
         writer.write("</gpx>");
         writer.close();
+
+        Toast.makeText(getContext(), "Datei unter" + file + " gespeichert!", Toast.LENGTH_LONG).show();
+
     }
 
     /**
