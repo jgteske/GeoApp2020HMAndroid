@@ -299,6 +299,12 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
         dialog.show();
     }
 
+    /**
+     * Draws a Polyline into a MapView Object
+     *
+     * @param context
+     * @param map
+     */
     public static void drawRoute(Context context, MapView map) {
         if (positions != null) {
             List<Location> list = positions;
@@ -306,7 +312,18 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
             map.getOverlayManager().add(drawTrack);
         }
     }
-    // https://www.programcreek.com/java-api-examples/?api=org.osmdroid.bonuspack.overlays.Polyline
+
+    /**
+     * Created a Polyline of all List<Location> Locations and returns it
+     * @var positions
+     *
+     * Source: https://www.programcreek.com/java-api-examples/?api=org.osmdroid.bonuspack.overlays.Polyline
+     *
+     * @param context
+     * @param map
+     * @param positions
+     * @return
+     */
     public static Polyline getPolyline(Context context, MapView map, List<Location> positions) {
 
         Polyline track = (Polyline) new Polyline();
@@ -327,26 +344,6 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
 
         return track;
     }
-
-/*    public static void showTrack(Context context, MapView map) {
-
-        Polyline track = new Polyline(context);
-        line.setSubDescription(Polyline.class.getCanonicalName());
-        line.setWidth(15f);
-        line.setColor(ContextCompat.getColor(context, R.color.orange_partially_transparent));
-
-        ArrayList<GeoPoint> track = new ArrayList<>();
-
-        for (Location value : positions) {
-            GeoPoint geoPoint = new GeoPoint(value.getLatitude(), value.getLongitude());
-            track.add(geoPoint);
-        }
-
-
-
-        map.getOverlay().add(roadOverlay);
-        map.invalidate();
-    }*/
 
     @Override
     public void onPause() {
