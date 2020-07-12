@@ -25,7 +25,7 @@
             <string name="title_tracker">Tracke deine Bewegungen</string>
     <!-- Submenu 2-->
     <string name="menu_header2">Weitere Inhalte</string>
-        <string name="menu_gallery">Betroffene Regionen</string>
+        <string name="menu_gallery">Gallery</string>
             <string name="title_gallery">Bilder stark betroffener Regionen</string>
         <string name="menu_touch">ZEN-trum</string>
             <string name="title_touch">Verschiebe das Infektionszentrum</string>
@@ -40,7 +40,7 @@
 
     <!-- HOME -->
     <string name="button_aufgaben">Projekte</string>
-    <string name="button_gallery">Betroffene Regionen</string>
+    <string name="button_gallery">Gallery</string>
     <string name="button_map">Karte</string>
     <string name="button_tip">Reisetipp</string>
     <string name="button_alert">Warnung!</string>
