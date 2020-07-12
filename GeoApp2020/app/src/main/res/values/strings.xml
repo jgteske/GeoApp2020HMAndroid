@@ -22,11 +22,11 @@
         <string name="menu_locations">Meine Standorte</string>
             <string name="title_locations">Meine Standorte</string>
         <string name="menu_tracker">GPS-Tracker</string>
-            <string name="title_tracker">Tracke deine Route</string>
+            <string name="title_tracker">Tracke deine Bewegungen</string>
     <!-- Submenu 2-->
-    <string name="menu_header2">Entspannungsbereich</string>
-        <string name="menu_gallery">Gallery</string>
-            <string name="title_gallery">Bilder unterschiedlicher Standorte</string>
+    <string name="menu_header2">Weitere Inhalte</string>
+        <string name="menu_gallery">Betroffene Regionen</string>
+            <string name="title_gallery">Bilder stark betroffener Regionen</string>
         <string name="menu_touch">ZEN-trum</string>
             <string name="title_touch">Verschiebe das Infektionszentrum</string>
         <string name="menu_media">Medien</string>
@@ -40,7 +40,7 @@
 
     <!-- HOME -->
     <string name="button_aufgaben">Projekte</string>
-    <string name="button_gallery">Gallery</string>
+    <string name="button_gallery">Betroffene Regionen</string>
     <string name="button_map">Karte</string>
     <string name="button_tip">Reisetipp</string>
     <string name="button_alert">Warnung!</string>
@@ -71,14 +71,14 @@
     <string name="latitude">geograf. Breite</string>
     <string name="speed">Geschwindigkeit</string>
     <string name="show_track">Zeige den Track auf der Karte</string>
-    <string name="dependency_display_track">Wollen Sie den Track auf der Karte anzeigen, müssen Sie diesen zuerst speichern. \nNachdem der Track angezeit wurde, kann er nicht mehr gespeichert werden!</string>
+    <string name="dependency_display_track">Willst du den Track auf der Karte anzeigen, müssen er zuerst gespeichert werden. \nNachdem der Track angezeit wurde, kann er nicht mehr gespeichert werden!</string>
 
 
     <!-- Dialog Strings -->
     <string name="dialog_button_ok">Ok</string>
     <string name="dialog_button_cancle">Abbrechen</string>
-    <string name="dialog_tip">Das beliebteste Reiseziel aktuell ist: Kanada</string>
-    <string name="dialog_alert">Keep your distance and wear a mask!</string>
+    <string name="dialog_tip">Aktuell wird empfohlen keine Reisen zu unternehmen!</string>
+    <string name="dialog_alert">Mindestabstand von 2m bewahren! Trage in öffentlichen Gebäuden immer eine Maske!</string>
 
     <string name="dialog_no_location">Standort konnte nicht bestimmt werden! Bitte GPS einschalten!</string>
     <string name="dialog_no_writingpermission">Keine Rechte auf externen Speicher zu scheiben!</string>
