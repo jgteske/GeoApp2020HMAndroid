@@ -20,7 +20,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,7 +31,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -169,13 +167,13 @@ public class GnssGpsTrackerFragment extends Fragment implements LocationListener
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
             saveButton.setEnabled(true);
-            trackButton.setEnabled(false);
+            trackButton.setEnabled(true);
             collectData = false;
         } else if (v == saveButton) {
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
             saveButton.setEnabled(false);
-            trackButton.setEnabled(true);
+            trackButton.setEnabled(false);
             collectData = false;
             saveCollectedData(getContext());
         } else if (v == trackButton) {

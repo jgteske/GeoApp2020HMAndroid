@@ -71,7 +71,7 @@
     <string name="latitude">geograf. Breite</string>
     <string name="speed">Geschwindigkeit</string>
     <string name="show_track">Zeige den Track auf der Karte</string>
-    <string name="dependency_display_track">Willst du den Track auf der Karte anzeigen, müssen er zuerst gespeichert werden. \nNachdem der Track angezeit wurde, kann er nicht mehr gespeichert werden!</string>
+    <string name="dependency_display_track">Der Track kann entweder als .gpx Datei gespeichert ODER auf der Karte angezeigt werden!</string>
 
 
     <!-- Dialog Strings -->
